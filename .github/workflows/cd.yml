@@ -23,13 +23,11 @@ jobs:
       - name: Restore workloads
         working-directory: src
         run: dotnet workload restore
-      - name: Set VERSION variable from tag
-        run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
       - name: Build
-        run: dotnet build src/jc-google-mobile-ads-ios.sln --configuration Release /p:Version=${VERSION}
+        run: dotnet build src/jc-google-mobile-ads-ios.sln --configuration Release
       - name: Test
-        run: dotnet test src/jc-google-mobile-ads-ios.sln --configuration Release /p:Version=${VERSION} --no-build
+        run: dotnet test src/jc-google-mobile-ads-ios.sln --configuration Release --no-build
       - name: Pack
-        run: dotnet pack src/jc-google-mobile-ads-ios.sln --configuration Release /p:Version=${VERSION} --no-build --output .
+        run: dotnet pack src/jc-google-mobile-ads-ios.sln --configuration Release --no-build --output .
       - name: Push
         run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_APIKEY }}
