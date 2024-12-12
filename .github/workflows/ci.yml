@@ -21,7 +21,10 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
       - name: Use Xcode version 16
         run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
+      - name: Restore workloads
+        working-directory: src
+        run: dotnet workload restore
       - name: Restore dependencies
-        run: dotnet restore jc-google-mobile-ads-ios.sln
+        run: dotnet restore src/jc-google-mobile-ads-ios.sln
       - name: Build
-        run: dotnet build jc-google-mobile-ads-ios.sln --no-restore
+        run: dotnet build src/jc-google-mobile-ads-ios.sln --no-restore
