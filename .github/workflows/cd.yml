@@ -20,8 +20,6 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
       - name: Use Xcode version 16
         run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
-      - name: Restore workloads
-        run: dotnet workload restore
       - name: Set VERSION variable from tag
         run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
       - name: Build
