@@ -21,14 +21,15 @@ jobs:
       - name: Use Xcode version 16
         run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
       - name: Restore workloads
+        working-directory: src
         run: dotnet workload restore
       - name: Set VERSION variable from tag
         run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
       - name: Build
-        run: dotnet build jc-google-mobile-ads-ios.sln --configuration Release /p:Version=${VERSION}
+        run: dotnet build src/jc-google-mobile-ads-ios.sln --configuration Release /p:Version=${VERSION}
       - name: Test
-        run: dotnet test jc-google-mobile-ads-ios.sln --configuration Release /p:Version=${VERSION} --no-build
+        run: dotnet test src/jc-google-mobile-ads-ios.sln --configuration Release /p:Version=${VERSION} --no-build
       - name: Pack
-        run: dotnet pack jc-google-mobile-ads-ios.sln --configuration Release /p:Version=${VERSION} --no-build --output .
+        run: dotnet pack src/jc-google-mobile-ads-ios.sln --configuration Release /p:Version=${VERSION} --no-build --output .
       - name: Push
         run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_APIKEY }}
