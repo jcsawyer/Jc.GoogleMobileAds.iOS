@@ -23,6 +23,14 @@ namespace Google.UserMessagingPlatform
         Personalized = 1,
         NonPersonalized = 2
     }
+    
+    [Native]
+    public enum UMPPrivacyOptionsRequirementStatus : long
+    {
+        Unknown = 0,
+        Requried = 1,
+        NotRequired = 2
+    }
 
     [Native]
     public enum FormStatus : long
@@ -37,7 +45,10 @@ namespace Google.UserMessagingPlatform
     {
         Disabled = 0,
         Eea = 1,
-        NotEea = 2
+        [Obsolete("Use Other")]
+        NotEea = 2,
+        RegulatedUSState = 3,
+        Other = 4
     }
 
     [Native]
