@@ -664,11 +664,11 @@ namespace Google.MobileAds
         [Export("ad:didFailToPresentFullScreenContentWithError:")]
         void DidFailToPresentFullScreenContent(FullScreenPresentingAd ad, NSError error);
 
-        // - (void)adDidPresentFullScreenContent:(nonnull id<GADFullScreenPresentingAd>)ad;
+        // - (void)adWillPresentFullScreenContent:(nonnull id<GADFullScreenPresentingAd>)ad;
         [EventArgs("FullScreenPresentingAd")]
         [EventName("PresentedContent")]
-        [Export("adDidPresentFullScreenContent:")]
-        void DidPresentFullScreenContent(FullScreenPresentingAd ad);
+        [Export("adWillPresentFullScreenContent:")]
+        void WillPresentFullScreenContent(FullScreenPresentingAd ad);
 
         // - (void)adWillDismissFullScreenContent:(nonnull id<GADFullScreenPresentingAd>)ad;
         [EventArgs("FullScreenPresentingAd")]
@@ -1558,7 +1558,6 @@ namespace Google.MobileAds
     [BaseType(typeof(NSObject), Name = "GADCustomEventBannerDelegate")]
     interface CustomEventBannerDelegate
     {
-
         [Abstract]
         [Export("customEventBanner:didReceiveAd:")]
         void DidReceiveAd(ICustomEventBanner customEvent, UIView view);
