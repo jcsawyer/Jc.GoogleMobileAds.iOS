@@ -45,7 +45,10 @@ namespace Google.UserMessagingPlatform
     {
         Disabled = 0,
         Eea = 1,
-        NotEea = 2
+        [Obsolete("Use Other")]
+        NotEea = 2,
+        RegulatedUSState = 3,
+        Other = 4
     }
 
     [Native]
