@@ -25,7 +25,7 @@ namespace Google.UserMessagingPlatform
     }
     
     [Native]
-    public enum UMPPrivateOptionsRequirementStatus : long
+    public enum UMPPrivacyOptionsRequirementStatus : long
     {
         Unknown = 0,
         Requried = 1,
