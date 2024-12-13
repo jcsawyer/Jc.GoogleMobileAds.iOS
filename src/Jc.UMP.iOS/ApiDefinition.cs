@@ -27,6 +27,11 @@ namespace Google.UserMessagingPlatform
 	[BaseType(typeof(NSObject), Name = "UMPConsentForm")]    
 	interface ConsentForm
 	{
+		// + (void)loadAndPresentIfRequiredFromViewController:(nullable UIViewController *)viewController completionHandler: (nullable UMPConsentFormPresentCompletionHandler) completionHandler;
+		[Static]
+		[Export("loadAndPresentIfRequiredFromViewController:completionHandler:")]
+		void LoadAndPresentIfRequiredFromViewController([NullAllowed] UIViewController viewController, [NullAllowed] ConsentFormPresentCompletionHandler completionHandler);
+		
 		// +(void)loadWithCompletionHandler:(UMPConsentFormLoadCompletionHandler _Nonnull)completionHandler;
 		[Static]
 		[Export ("loadWithCompletionHandler:")]
@@ -35,6 +40,11 @@ namespace Google.UserMessagingPlatform
 		// -(void)presentFromViewController:(id)viewController completionHandler:(UMPConsentFormPresentCompletionHandler _Nullable)completionHandler;
 		[Export ("presentFromViewController:completionHandler:")]
 		void PresentFromViewController (NSObject viewController, [NullAllowed] ConsentFormPresentCompletionHandler completionHandler);
+		
+		// + (void)presentPrivacyOptionsFormFromViewController:(nullable UIViewController *)viewController completionHandler: (nullable UMPConsentFormPresentCompletionHandler) completionHandler;
+		[Static]
+		[Export("presentPrivacyOptionsFormFromViewController:completionHandler:")]
+		void PresentPrivacyOptionsFormFromViewController([NullAllowed] UIViewController viewController, [NullAllowed] ConsentFormPresentCompletionHandler completionHandler);
 	}
 
 	// @interface UMPConsentInformation : NSObject
@@ -57,6 +67,10 @@ namespace Google.UserMessagingPlatform
 		// @property (readonly, nonatomic) UMPConsentStatus consentStatus;
 		[Export ("consentStatus")]
 		ConsentStatus ConsentStatus { get; }
+		
+		// @property (nonatomic, readonly) BOOL canRequestAds;
+		[Export ("canRequestAds")]
+		bool CanRequestAds { get; }
 
 		// @property (readonly, nonatomic) UMPConsentType consentType;
 		[Export ("consentType")]
@@ -65,6 +79,10 @@ namespace Google.UserMessagingPlatform
 		// @property (readonly, nonatomic) UMPFormStatus formStatus;
 		[Export ("formStatus")]
 		FormStatus FormStatus { get; }
+		
+		// @property (nonatomic, readonly) UMPPrivacyOptionsRequirementStatus privacyOptionsRequirementStatus;
+		[Export ("privacyOptionsRequirementStatus")]
+		UMPPrivacyOptionsRequirementStatus PrivacyOptionsRequirementStatus { get; }
 
 		// -(void)requestConsentInfoUpdateWithParameters:(id)parameters completionHandler:(UMPConsentInformationUpdateCompletionHandler _Nonnull)handler;
 		[Export ("requestConsentInfoUpdateWithParameters:completionHandler:")]
