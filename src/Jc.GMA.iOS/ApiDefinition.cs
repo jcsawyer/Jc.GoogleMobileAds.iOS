@@ -1526,16 +1526,19 @@ namespace Google.MobileAds
 
     #region Mediation
 
+    [Obsolete("Use MediationAdapter instead.")]
     interface ICustomEventBanner
     {
 
     }
 
+    [Obsolete("Use MediationAdapter instead.")]
     [Protocol(Name = "GADCustomEventBanner")]
     interface CustomEventBanner
     {
         [Abstract]
         [Export("requestBannerAd:parameter:label:request:")]
+        [Obsolete("Use MediationAdapter instead.")]
         void RequestBannerAd(AdSize adSize, [NullAllowed] string serverParameter, [NullAllowed] string serverLabel, CustomEventRequest request);
 
         [Abstract]
@@ -1548,14 +1551,15 @@ namespace Google.MobileAds
         void SetDelegate([NullAllowed] ICustomEventBannerDelegate aDelegate);
     }
 
+    [Obsolete("Use MediationAdapter instead.")]
     interface ICustomEventBannerDelegate
     {
-
     }
 
     [Model]
     [Protocol]
     [BaseType(typeof(NSObject), Name = "GADCustomEventBannerDelegate")]
+    [Obsolete("Use MediationAdapter instead.")]
     interface CustomEventBannerDelegate
     {
         [Abstract]
@@ -1593,6 +1597,7 @@ namespace Google.MobileAds
     }
 
     [BaseType(typeof(NSObject), Name = "GADCustomEventExtras")]
+    [Obsolete("Use MediationAdapter instead.")]
     interface CustomEventExtras : AdNetworkExtras
     {
 
@@ -1612,11 +1617,13 @@ namespace Google.MobileAds
         NSDictionary AllExtras { get; }
     }
 
+    [Obsolete("Use MediationAdapter instead.")]
     interface ICustomEventInterstitial
     {
 
     }
 
+    [Obsolete("Use MediationAdapter instead.")]
     [Protocol(Name = "GADCustomEventInterstitial")]
     interface CustomEventInterstitial
     {
@@ -1632,18 +1639,21 @@ namespace Google.MobileAds
 
         [Abstract]
         [Export("requestInterstitialAdWithParameter:label:request:")]
+        [Obsolete("Use MediationAdapter instead.")]
         void RequestInterstitialAd([NullAllowed] string serverParameter, [NullAllowed] string serverLabel, CustomEventRequest request);
 
         [Abstract]
         [Export("presentFromRootViewController:")]
+        [Obsolete("Use MediationAdapter instead.")]
         void PresentFromRootViewController([NullAllowed] UIViewController rootViewController);
     }
 
+    [Obsolete("Use MediationAdapter instead.")]
     interface ICustomEventInterstitialDelegate
     {
-
     }
 
+    [Obsolete("Use MediationAdapter instead.")]
     [Model]
     [Protocol]
     [BaseType(typeof(NSObject), Name = "GADCustomEventInterstitialDelegate")]
@@ -1672,11 +1682,13 @@ namespace Google.MobileAds
         void WillLeaveApplication(ICustomEventInterstitial customEvent);
     }
 
+    [Obsolete("Use MediationAdapter instead.")]
     interface ICustomEventNativeAd
     {
     }
 
     // @protocol GADCustomEventNativeAd <NSObject>
+    [Obsolete("Use MediationAdapter instead.")]
     [Model]
     [Protocol]
     [BaseType(typeof(NSObject), Name = "GADCustomEventNativeAd")]
@@ -1685,14 +1697,17 @@ namespace Google.MobileAds
         // @required -(void)requestNativeAdWithParameter:(NSString *)serverParameter request:(GADCustomEventRequest *)request adTypes:(NSArray *)adTypes options:(NSArray *)options rootViewController:(UIViewController *)rootViewController;
         [Abstract]
         [Export("requestNativeAdWithParameter:request:adTypes:options:rootViewController:")]
+        [Obsolete("Use MediationAdapter instead.")]
         void Request(string serverParameter, CustomEventRequest request, NSString[] adTypes, NSNumber[] options, UIViewController rootViewController);
 
         // - (BOOL)handlesUserClicks;
+        [Obsolete("Use MediationAdapter instead.")]
         [Abstract]
         [Export("handlesUserClicks")]
         bool HandlesUserClicks();
 
         // - (BOOL)handlesUserImpressions;
+        [Obsolete("Use MediationAdapter instead.")]
         [Abstract]
         [Export("handlesUserImpressions")]
         bool HandlesUserImpressions();
@@ -1708,10 +1723,12 @@ namespace Google.MobileAds
         void SetDelegate([NullAllowed] ICustomEventNativeAdDelegate aDelegate);
     }
 
+    [Obsolete("Use MediationAdapter instead.")]
     interface ICustomEventNativeAdDelegate
     {
     }
 
+    [Obsolete("Use MediationAdapter instead.")]
     [Model]
     [Protocol]
     [BaseType(typeof(NSObject), Name = "GADCustomEventNativeAdDelegate")]
@@ -1728,6 +1745,7 @@ namespace Google.MobileAds
         void DidReceiveMediatedUnifiedNativeAd(ICustomEventNativeAd customEventNativeAd, Mediation.IMediatedUnifiedNativeAd mediatedUnifiedNativeAd);
     }
 
+    [Obsolete("Use MediationAdapter instead.")]
     [BaseType(typeof(NSObject), Name = "GADCustomEventRequest")]
     interface CustomEventRequest
     {
