@@ -30,4 +30,4 @@ jobs:
       - name: Pack
         run: dotnet pack src/jc-google-mobile-ads-ios.sln --configuration Release --no-build --output .
       - name: Push
-        run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_APIKEY }}
+        run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key ${{ secrets.NUGET_APIKEY }}
