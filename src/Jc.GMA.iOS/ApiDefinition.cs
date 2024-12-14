@@ -1638,6 +1638,11 @@ namespace Google.MobileAds
         [Abstract]
         [Export("loadRewardedAdForAdConfiguration:completionHandler:")]
         void LoadRewardedAdForAdConfiguration(MediationRewardedAdConfiguration adConfiguration, MediationRewardedLoadCompletionHandler completionHandler);
+        
+        // - (void)loadAppOpenAdForAdConfiguration: (nonnull GADMediationAppOpenAdConfiguration *)adConfiguration completionHandler: (nonnull GADMediationAppOpenLoadCompletionHandler) completionHandler;
+        [Abstract]
+        [Export("loadAppOpenAdForAdConfiguration:completionHandler:")]
+        void LoadAppOpenAdForAdConfiguration(MediationAppOpenAdConfiguration adConfiguration, MediationAppOpenLoadCompletionHandler completionHandler);
     }
     
     // @protocol GADMediationAd <NSObject>
@@ -1704,7 +1709,7 @@ namespace Google.MobileAds
     
     // @interface GADMediationBannerAdConfiguration : GADMediationAdConfiguration
     [BaseType(typeof(MediationAdConfiguration), Name = "GADMediationBannerAdConfiguration")]
-    public interface MediationBannerAdConfiguration
+    interface MediationBannerAdConfiguration
     {
         // @property (nonatomic, readonly) GADAdSize adSize;
         [Export("adSize")]
@@ -1713,7 +1718,7 @@ namespace Google.MobileAds
     
     // @interface GADMediationInterstitialAdConfiguration : GADMediationAdConfiguration
     [BaseType(typeof(MediationAdConfiguration), Name = "GADMediationInterstitialAdConfiguration")]
-    public interface MediationInterstitialAdConfiguration
+    interface MediationInterstitialAdConfiguration
     {
     }
     
@@ -1740,7 +1745,7 @@ namespace Google.MobileAds
     
     // @interface GADMediationNativeAdConfiguration : GADMediationAdConfiguration
     [BaseType(typeof(MediationAdConfiguration), Name = "GADMediationNativeAdConfiguration")]
-    public interface MediationNativeAdConfiguration
+    interface MediationNativeAdConfiguration
     {
     }
     
@@ -1798,7 +1803,7 @@ namespace Google.MobileAds
     
     // - (void)loadRewardedAdForAdConfiguration: (nonnull GADMediationRewardedAdConfiguration *)adConfiguration completionHandler: (nonnull GADMediationRewardedLoadCompletionHandler) completionHandler;
     [BaseType(typeof(MediationAdConfiguration), Name = "GADMediationRewardedAdConfiguration")]
-    public interface MediationRewardedAdConfiguration
+    interface MediationRewardedAdConfiguration
     {
     }
     
@@ -1838,6 +1843,36 @@ namespace Google.MobileAds
         [Export("presentFromViewController:")]
         void PresentFromViewController(UIViewController viewController);
     }
+    
+    // @interface GADMediationAppOpenAdConfiguration : GADMediationAdConfiguration
+    [BaseType(typeof(MediationAdConfiguration), Name = "GADMediationAppOpenAdConfiguration")]
+    interface MediationAppOpenAdConfiguration
+    {
+    }
+    
+    // typedef id<GADMediationAppOpenAdEventDelegate> _Nullable (^GADMediationAppOpenLoadCompletionHandler)(id<GADMediationAppOpenAd> _Nullable, NSError *_Nullable)
+    delegate MediationAppOpenAdEventDelegate MediationAppOpenLoadCompletionHandler([NullAllowed] MediationAppOpenAd ad, [NullAllowed] NSError error);
+    
+    // @protocol GADMediationAppOpenAdEventDelegate <GADMediationAdEventDelegate>
+    [Model]
+    [Protocol]
+    [BaseType(typeof(MediationAdEventDelegate), Name = "GADMediationAppOpenAdEventDelegate")]
+    interface MediationAppOpenAdEventDelegate
+    {
+    }
+    
+    // @protocol GADMediationAppOpenAd <GADMediationAd>
+    [BaseType(typeof(NSObject), Name = "GADMediationAppOpenAd")]
+    [Protocol] 
+    [Model]
+    interface MediationAppOpenAd : MediationAd
+    {
+        // - (void)presentFromViewController:(nonnull UIViewController *)viewController;
+        [Abstract]
+        [Export("presentFromViewController:")]
+        void PresentFromViewController(UIViewController viewController);
+    }
+    
     
     [Obsolete("Use MediationAdapter instead.")]
     interface ICustomEventBanner
