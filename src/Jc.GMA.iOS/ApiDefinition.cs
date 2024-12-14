@@ -7,10 +7,6 @@ using ObjCRuntime;
 using StoreKit;
 using UIKit;
 
-#if !NET
-using NativeHandle = System.IntPtr;
-#endif
-
 namespace Google.MobileAds
 {
     #region CustomLib
@@ -1529,6 +1525,14 @@ namespace Google.MobileAds
     // typedef void (^GADMediationAdapterSetUpCompletionBlock)(NSError *_Nullable)
     delegate void MediationAdapterSetUpCompletionBlock([NullAllowed] NSError error);
     
+    // @protocol GADMediationAdEventDelegate <NSObject>
+    [BaseType(typeof(NSObject), Name = "GADMediationAd")]
+    [Protocol(Name = "GADMediationAd")]
+    interface MediationAdEventDelegate
+    {
+    }
+    
+    
     // @interface GADMediationServerConfiguration : NSObject
     [BaseType(typeof(NSObject), Name = "GADMediationServerConfiguration")]
     interface MediationServerConfiguration
@@ -1624,6 +1628,11 @@ namespace Google.MobileAds
         [Abstract]
         [Export("loadInterstitialForAdConfiguration:completionHandler:")]
         void LoadInterstitialForAdConfiguration(MediationInterstitialAdConfiguration adConfiguration, MediationInterstitialLoadCompletionHandler completionHandler);
+        
+        // - (void)loadNativeAdForAdConfiguration: (nonnull GADMediationNativeAdConfiguration *)adConfiguration completionHandler: (nonnull GADMediationNativeLoadCompletionHandler) completionHandler;
+        [Abstract]
+        [Export("loadNativeAdForAdConfiguration:completionHandler:")]
+        void LoadNativeAdForAdConfiguration(MediationNativeAdConfiguration adConfiguration, MediationNativeLoadCompletionHandler completionHandler);
     }
     
     // @protocol GADMediationAd <NSObject>
@@ -1653,7 +1662,7 @@ namespace Google.MobileAds
     
     [Model]
     [Protocol]
-    [BaseType(typeof(NSObject), Name = "GADMediationBannerAdEventDelegate")]
+    [BaseType(typeof(MediationAdEventDelegate), Name = "GADMediationBannerAdEventDelegate")]
     interface MediationBannerAdEventDelegate
     {
         // - (void)reportImpression;
@@ -1719,9 +1728,67 @@ namespace Google.MobileAds
     
     [Model]
     [Protocol]
-    [BaseType(typeof(NSObject), Name = "GADMediationInterstitialAdEventDelegate")]
+    [BaseType(typeof(MediationAdEventDelegate), Name = "GADMediationInterstitialAdEventDelegate")]
     interface MediationInterstitialAdEventDelegate
     {
+    }
+    
+    // @interface GADMediationNativeAdConfiguration : GADMediationAdConfiguration
+    [BaseType(typeof(MediationAdConfiguration), Name = "GADMediationNativeAdConfiguration")]
+    public interface MediationNativeAdConfiguration
+    {
+    }
+    
+    // typedef id<GADMediationNativeAdEventDelegate> _Nullable (^GADMediationNativeLoadCompletionHandler)(id<GADMediationNativeAd> _Nullable, NSError *_Nullable)
+    delegate MediationNativeAdEventDelegate MediationNativeLoadCompletionHandler([NullAllowed] MediationNativeAd ad, [NullAllowed] NSError error);
+    
+    // @protocol GADMediationNativeAdEventDelegate <GADMediationAdEventDelegate>
+    [Model]
+    [Protocol]
+    [BaseType(typeof(MediationAdEventDelegate), Name = "GADMediationNativeAdEventDelegate")]
+    interface MediationNativeAdEventDelegate
+    {
+        // - (void)didPlayVideo;
+        [Abstract]
+        [Export("didPlayVideo")]
+        void DidPlayVideo();
+        
+        // - (void)didPauseVideo;
+        [Abstract]
+        [Export("didPauseVideo")]
+        void DidPauseVideo();
+        
+        // - (void)didEndVideo;
+        [Abstract]
+        [Export("didEndVideo")]
+        void DidEndVideo();
+        
+        // - (void)didMuteVideo;
+        [Abstract]
+        [Export("didMuteVideo")]
+        void DidMuteVideo();
+        
+        // - (void)didUnmuteVideo;
+        [Abstract]
+        [Export("didUnmuteVideo")]
+        void DidUnmuteVideo();
+    }
+
+    // @protocol GADMediationNativeAd <GADMediationAd, GADMediatedUnifiedNativeAd>
+    [BaseType(typeof(NSObject), Name = "GADMediationNativeAd")]
+    [Protocol]
+    [Model]
+    interface MediationNativeAd : MediationAd, Mediation.MediatedUnifiedNativeAd
+    {
+        // - (BOOL)handlesUserClicks;
+        [Abstract]
+        [Export("handlesUserClicks")]
+        bool HandlesUserClicks();
+
+        // - (BOOL)handlesUserImpressions;
+        [Abstract]
+        [Export("handlesUserImpressions")]
+        bool HandlesUserImpressions();
     }
 
     [Obsolete("Use MediationAdapter instead.")]
