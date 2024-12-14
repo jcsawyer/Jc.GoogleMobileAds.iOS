@@ -455,11 +455,6 @@ namespace Google.MobileAds
         // @property(nonatomic, readonly, nonnull) NSDictionary<NSString *, id> *dictionaryRepresentation;
         [Export("dictionaryRepresentation")]
         NSDictionary<NSString, NSObject> DictionaryRepresentation { get; }
-
-        // @property(nonatomic, readonly, nonnull) NSDictionary<NSString *, id> *credentials;       
-        [Obsolete("Use adUnitMapping instead")]
-        [Export("credentials")]
-        NSDictionary<NSString, NSObject> Credentials { get; }
     }
 
     // @interface GADResponseInfo : NSObject
@@ -700,7 +695,14 @@ namespace Google.MobileAds
         [Async]
         [Static]
         [Export("loadWithAdUnitID:request:orientation:completionHandler:")]
+        [Obsolete("Use +loadWithAdUnitID:request:completionHandler:")]
         void Load(string adUnitId, [NullAllowed] Request request, UIInterfaceOrientation orientation, AppOpenAdLoadCompletionHandler completionHandler);
+        
+        // + (void)loadWithAdUnitID:(nonnull NSString *)adUnitID request:(nullable GADRequest *)request completionHandler: (nonnull GADAppOpenAdLoadCompletionHandler)completionHandler;
+        [Async]
+        [Static]
+        [Export("loadWithAdUnitID:request:completionHandler:")]
+        void Load(string adUnitId, [NullAllowed] Request request, AppOpenAdLoadCompletionHandler completionHandler);
 
         // @property (nonatomic, readonly, nonnull) GADResponseInfo* responseInfo;
         [Export("responseInfo")]
@@ -1090,11 +1092,6 @@ namespace Google.MobileAds
     [BaseType(typeof(UIView), Name = "GADCustomNativeAd")]
     interface CustomNativeAd
     {
-        // extern NSString *const GADCustomTemplateAdMediaViewKey;
-        //[Internal]
-        //[Field("GADCustomNativeAdMediaViewKey", "__Internal")]
-        //NSString _MediaViewKey { get; }
-
         // @property(nonatomic, readonly, nonnull) NSString *formatID;
         [Export("formatID")]
         string FormatID { get; }
@@ -2555,15 +2552,6 @@ namespace Google.MobileAds.DoubleClick
     [BaseType(typeof(Google.MobileAds.Request), Name = "GAMRequest")]
     interface Request
     {
-        [New]
-        [Field("GADSimulatorID", "__Internal")]
-        NSString SimulatorId { get; }
-
-        [New]
-        [Static]
-        [Export("request")]
-        Request GetDefaultRequest();
-
         [NullAllowed]
         [Export("publisherProvidedID", ArgumentSemantic.Copy)]
         string PublisherProvidedID { get; set; }
@@ -2571,10 +2559,6 @@ namespace Google.MobileAds.DoubleClick
         [NullAllowed]
         [Export("categoryExclusions", ArgumentSemantic.Copy)]
         string[] CategoryExclusions { get; set; }
-
-        [NullAllowed]
-        [Export("customTargeting", ArgumentSemantic.Copy)]
-        NSDictionary<NSString, NSString> CustomTargeting { get; set; }
     }
 
     #endregion
