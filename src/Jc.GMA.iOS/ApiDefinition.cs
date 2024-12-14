@@ -1523,8 +1523,9 @@ namespace Google.MobileAds
     delegate void MediationAdapterSetUpCompletionBlock([NullAllowed] NSError error);
     
     // @protocol GADMediationAdEventDelegate <NSObject>
-    [BaseType(typeof(NSObject), Name = "GADMediationAd")]
-    [Protocol(Name = "GADMediationAd")]
+    [Model]
+    [Protocol]
+    [BaseType(typeof(NSObject), Name = "GADMediationAdEventDelegate")]
     interface MediationAdEventDelegate
     {
     }
