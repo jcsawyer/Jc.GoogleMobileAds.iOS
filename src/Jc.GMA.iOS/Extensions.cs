@@ -80,6 +80,10 @@ namespace Google.MobileAds {
 		// GADAdSize GADAdSizeFromNSValue(NSValue *value);
 		[DllImport ("__Internal", EntryPoint = "GADAdSizeFromNSValue")]
 		public static extern AdSize _GetFromNSValue (IntPtr value);
+		
+		// NSString *_Nonnull GADGetStringFromVersionNumber(GADVersionNumber version)
+		[DllImport ("__Internal", EntryPoint = "GADGetStringFromVersionNumber")]
+		public static extern string GetStringFromVersionNumber (VersionNumber version);
 
 		public static NSString GetNSString (AdSize size)
 		{

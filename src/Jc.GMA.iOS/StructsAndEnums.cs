@@ -14,6 +14,14 @@ namespace Google.MobileAds
         public uint Flags;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    public struct VersionNumber
+    {
+        public int MajorVersion;
+        public int MinorVersion;
+        public int PatchVersion;
+    }
+
     [Native]
     public enum AdFormat : long
     {
