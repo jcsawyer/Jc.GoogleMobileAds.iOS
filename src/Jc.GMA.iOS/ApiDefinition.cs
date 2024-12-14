@@ -1633,6 +1633,11 @@ namespace Google.MobileAds
         [Abstract]
         [Export("loadNativeAdForAdConfiguration:completionHandler:")]
         void LoadNativeAdForAdConfiguration(MediationNativeAdConfiguration adConfiguration, MediationNativeLoadCompletionHandler completionHandler);
+        
+        // - (void)loadRewardedAdForAdConfiguration: (nonnull GADMediationRewardedAdConfiguration *)adConfiguration completionHandler: (nonnull GADMediationRewardedLoadCompletionHandler) completionHandler;
+        [Abstract]
+        [Export("loadRewardedAdForAdConfiguration:completionHandler:")]
+        void LoadRewardedAdForAdConfiguration(MediationRewardedAdConfiguration adConfiguration, MediationRewardedLoadCompletionHandler completionHandler);
     }
     
     // @protocol GADMediationAd <NSObject>
@@ -1790,7 +1795,50 @@ namespace Google.MobileAds
         [Export("handlesUserImpressions")]
         bool HandlesUserImpressions();
     }
-
+    
+    // - (void)loadRewardedAdForAdConfiguration: (nonnull GADMediationRewardedAdConfiguration *)adConfiguration completionHandler: (nonnull GADMediationRewardedLoadCompletionHandler) completionHandler;
+    [BaseType(typeof(MediationAdConfiguration), Name = "GADMediationRewardedAdConfiguration")]
+    public interface MediationRewardedAdConfiguration
+    {
+    }
+    
+    // typedef id<GADMediationRewardedAdEventDelegate> _Nullable (^GADMediationRewardedLoadCompletionHandler)(id<GADMediationRewardedAd> _Nullable, NSError *_Nullable)
+    delegate MediationRewardedAdEventDelegate MediationRewardedLoadCompletionHandler([NullAllowed] MediationRewardedAd ad, [NullAllowed] NSError error);
+    
+    // @protocol GADMediationRewardedAdEventDelegate <GADMediationAdEventDelegate>
+    [Model]
+    [Protocol]
+    [BaseType(typeof(MediationAdEventDelegate), Name = "GADMediationRewardedAdEventDelegate")]
+    interface MediationRewardedAdEventDelegate
+    {
+        // - (void)didRewardUser;
+        [Abstract]
+        [Export("didRewardUser")]
+        void DidRewardUser();
+        
+        // - (void)didStartVideo;
+        [Abstract]
+        [Export("didStartVideo")]
+        void DidStartVideo();
+        
+        // - (void)didEndVideo;
+        [Abstract]
+        [Export("didEndVideo")]
+        void DidEndVideo();
+    }
+    
+    // @protocol GADMediationRewardedAd <GADMediationAd>
+    [BaseType(typeof(NSObject), Name = "GADMediationRewardedAd")]
+    [Protocol]
+    [Model]
+    interface MediationRewardedAd : MediationAd
+    {
+        // - (void)presentFromViewController:(nonnull UIViewController *)viewController;
+        [Abstract]
+        [Export("presentFromViewController:")]
+        void PresentFromViewController(UIViewController viewController);
+    }
+    
     [Obsolete("Use MediationAdapter instead.")]
     interface ICustomEventBanner
     {
