@@ -1619,6 +1619,11 @@ namespace Google.MobileAds
         [Abstract]
         [Export("loadBannerForAdConfiguration:completionHandler:")]
         void LoadBannerForAdConfiguration(MediationBannerAdConfiguration adConfiguration, MediationBannerLoadCompletionHandler completionHandler);
+        
+        // - (void)loadInterstitialForAdConfiguration: (nonnull GADMediationInterstitialAdConfiguration *)adConfiguration completionHandler: (nonnull GADMediationInterstitialLoadCompletionHandler)completionHandler;
+        [Abstract]
+        [Export("loadInterstitialForAdConfiguration:completionHandler:")]
+        void LoadInterstitialForAdConfiguration(MediationInterstitialAdConfiguration adConfiguration, MediationInterstitialLoadCompletionHandler completionHandler);
     }
     
     // @protocol GADMediationAd <NSObject>
@@ -1690,6 +1695,33 @@ namespace Google.MobileAds
         // @property (nonatomic, readonly) GADAdSize adSize;
         [Export("adSize")]
         AdSize AdSize { get; }
+    }
+    
+    // @interface GADMediationInterstitialAdConfiguration : GADMediationAdConfiguration
+    [BaseType(typeof(MediationAdConfiguration), Name = "GADMediationInterstitialAdConfiguration")]
+    public interface MediationInterstitialAdConfiguration
+    {
+    }
+    
+    // typedef id<GADMediationInterstitialAdEventDelegate> _Nullable (^GADMediationInterstitialLoadCompletionHandler)(id<GADMediationInterstitialAd> _Nullable, NSError *_Nullable)
+    delegate MediationInterstitialAdEventDelegate MediationInterstitialLoadCompletionHandler([NullAllowed] MediationInterstitialAd ad, [NullAllowed] NSError error);
+    
+    // @protocol GADMediationInterstitialAd <GADMediationAd>
+    [BaseType(typeof(NSObject), Name = "GADMediationInterstitialAd")]
+    [Protocol(Name = "GADMediationInterstitialAd")]
+    interface MediationInterstitialAd : MediationAd
+    {
+        // - (void)presentFromViewController:(nonnull UIViewController *)viewController;
+        [Abstract]
+        [Export("presentFromViewController:")]
+        void PresentFromViewController(UIViewController viewController);
+    }
+    
+    [Model]
+    [Protocol]
+    [BaseType(typeof(NSObject), Name = "GADMediationInterstitialAdEventDelegate")]
+    interface MediationInterstitialAdEventDelegate
+    {
     }
 
     [Obsolete("Use MediationAdapter instead.")]
