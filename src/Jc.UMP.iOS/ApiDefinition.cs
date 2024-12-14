@@ -30,7 +30,7 @@ namespace Google.UserMessagingPlatform
 		// + (void)loadAndPresentIfRequiredFromViewController:(nullable UIViewController *)viewController completionHandler: (nullable UMPConsentFormPresentCompletionHandler) completionHandler;
 		[Static]
 		[Export("loadAndPresentIfRequiredFromViewController:completionHandler:")]
-		void LoadAndPresentIfRequiredFromViewController([NullAllowed] UIViewController viewController, [NullAllowed] ConsentFormPresentCompletionHandler completionHandler);
+		void LoadAndPresentIfRequiredFromViewController([NullAllowed] NSObject viewController, [NullAllowed] ConsentFormPresentCompletionHandler completionHandler);
 		
 		// +(void)loadWithCompletionHandler:(UMPConsentFormLoadCompletionHandler _Nonnull)completionHandler;
 		[Static]
