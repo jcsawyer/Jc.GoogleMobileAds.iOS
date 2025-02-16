@@ -449,7 +449,7 @@ namespace Google.MobileAds
         /// </summary>
         [NullAllowed]
         [Export("tagForUnderAgeOfConsent", ArgumentSemantic.Copy)]
-        int TagForUnderAgeOfConsent { get; set; }
+        NSNumber TagForUnderAgeOfConsent { get; set; }
         
         // @property(nonatomic, nullable, copy) NSNumber *tagForChildDirectedTreatment;
         /// <summary>
@@ -478,7 +478,7 @@ namespace Google.MobileAds
         /// </summary>
         [NullAllowed]
         [Export("tagForChildDirectedTreatment", ArgumentSemantic.Copy)]
-        int TagForChildDirectedTreatment { get; set; }
+        NSNumber TagForChildDirectedTreatment { get; set; }
 
         // -(void)tagForUnderAgeOfConsent:(BOOL)underAgeOfConsent;
         [Obsolete("This method is deprecated. Use the TagForUnderAgeOfConsent property instead.")]
