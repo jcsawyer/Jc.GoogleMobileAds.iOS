@@ -13,7 +13,7 @@
 		<Description>Google Mobile Ads SDK iOS Bindings.</Description>
 		<PackageProjectUrl>https://jcsawyer.com/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/jcsawyer/Jc.GoogleMobileAds.iOS/tree/main</RepositoryUrl>
-		<Version>10.14.0</Version>
+		<Version>10.14.0-preview100</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
