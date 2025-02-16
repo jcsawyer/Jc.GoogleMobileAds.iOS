@@ -15,6 +15,5 @@ typedef NS_ENUM(NSInteger, GADAdFormat) {
   GADAdFormatRewarded = 2,              ///< Rewarded.
   GADAdFormatNative = 3,                ///< Native.
   GADAdFormatRewardedInterstitial = 4,  ///< Rewarded interstitial.
-  GADAdFormatUnknown GAD_DEPRECATED_MSG_ATTRIBUTE("Deprecated. No replacement.") = 5,  ///< Unknown.
   GADAdFormatAppOpen = 6,  ///< App open.
 };
