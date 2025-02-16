@@ -13,12 +13,17 @@
 		<Description>Google Mobile Ads SDK iOS Bindings.</Description>
 		<PackageProjectUrl>https://jcsawyer.com/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/jcsawyer/Jc.GoogleMobileAds.iOS/tree/main</RepositoryUrl>
+		<PacakgeReadmeFile>README.md</PacakgeReadmeFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Version>10.14.0-preview100</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<ObjcBindingApiDefinition Include="ApiDefinition.cs" />
 		<ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+		<None Include="../../README.md" Pack="true" PackagePath="/" />
+		<None Include="../../LICENSE" Pack="true" PackagePath="/" />
 	</ItemGroup>
 	
 	<ItemGroup>
