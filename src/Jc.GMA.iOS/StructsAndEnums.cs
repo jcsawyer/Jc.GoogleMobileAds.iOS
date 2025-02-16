@@ -25,12 +25,30 @@ namespace Google.MobileAds
     [Native]
     public enum AdFormat : long
     {
-        Banner,
-        Interstitial,
-        Rewarded,
-        Native,
-        RewardedInterstitial,
-        Unknown
+        Banner = 0,
+        Interstitial = 1,
+        Rewarded = 2,
+        Native = 3,
+        RewardedInterstitial = 4,
+        [Obsolete("Deprecated. No replacement.")] Unknown = 5,
+        AppOpen = 6,
+    }
+
+    [Native]
+    public enum PublisherPrivacyPersonalizationState : long
+    {
+        /// <summary>
+        /// Indicates that ad requests should receive the default publisher privacy treatment.
+        /// </summary>
+        Default = 0,
+        /// <summary>
+        /// Indicates that ad requests should receive personalized publisher privacy treatment.
+        /// </summary>
+        Enabled = 1,
+        /// <summary>
+        /// Indicates that ad requests should receive non-personalized publisher privacy treatment.
+        /// </summary>
+        Disabled = 2,
     }
 
     public enum AdLoaderAdType
