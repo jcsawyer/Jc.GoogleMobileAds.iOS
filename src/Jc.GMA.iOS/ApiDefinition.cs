@@ -173,6 +173,10 @@ namespace Google.MobileAds
         [NullAllowed]
         [Export("paidEventHandler", ArgumentSemantic.Copy)]
         PaidEventHandler PaidEventHandler { get; set; }
+        
+        // @property (nonatomic, readonly) BOOL isCollapsible;
+        [Export("isCollapsible")]
+        bool IsCollapsible { get; }
     }
 
     interface IBannerViewDelegate
@@ -260,7 +264,7 @@ namespace Google.MobileAds
 
         // -(BOOL)canPresentFromRootViewController:(UIViewController * _Nonnull)rootViewController error:(NSError * _Nullable * _Nullable)error;
         [Export("canPresentFromRootViewController:error:")]
-        bool CanPresent(UIViewController rootViewController, [NullAllowed] out NSError error);
+        bool CanPresent([NullAllowed] UIViewController rootViewController, [NullAllowed] out NSError error);
 
         // - (void)presentFromRootViewController:(nonnull UIViewController *)rootViewController;
         [Export("presentFromRootViewController:")]
@@ -306,11 +310,11 @@ namespace Google.MobileAds
 
         // -(BOOL)canPresentFromRootViewController:(UIViewController * _Nonnull)rootViewController error:(NSError * _Nullable * _Nullable)error;
         [Export("canPresentFromRootViewController:error:")]
-        bool CanPresent(UIViewController rootViewController, [NullAllowed] out NSError error);
+        bool CanPresent([NullAllowed] UIViewController rootViewController, [NullAllowed] out NSError error);
 
         // - (void)presentFromRootViewController:(nullable UIViewController *)viewController userDidEarnRewardHandler:(nonnull GADUserDidEarnRewardHandler)userDidEarnRewardHandler;
         [Export("presentFromRootViewController:userDidEarnRewardHandler:")]
-        void Present(UIViewController viewController, GADUserDidEarnRewardHandler @delegate);
+        void Present([NullAllowed] UIViewController viewController, GADUserDidEarnRewardHandler @delegate);
 
         [Export("adMetadata")]
         NSDictionary<NSString, NSObject> AdMetadata { get; }
@@ -784,11 +788,15 @@ namespace Google.MobileAds
 
         // - (BOOL) canPresentFromRootViewController:(nonnull UIViewController *)rootViewController	error:(NSError* _Nullable __autoreleasing *_Nullable)error;
         [Export("canPresentFromRootViewController:error:")]
-        bool CanPresent(UIViewController rootViewController, [NullAllowed] out NSError error);
+        bool CanPresent([NullAllowed] UIViewController rootViewController, [NullAllowed] out NSError error);
 
         // - (void) presentFromRootViewController:(nonnull UIViewController *)rootViewController;
         [Export("presentFromRootViewController:")]
         void PresentFromRootViewController([NullAllowed] UIViewController rootViewController);
+        
+        // @property (nonatomic, readonly, nonnull) NSString *adUnitID;
+        [Export("adUnitID")]
+        string AdUnitId { get; }
     }
 
     interface ISwipeableBannerViewDelegate

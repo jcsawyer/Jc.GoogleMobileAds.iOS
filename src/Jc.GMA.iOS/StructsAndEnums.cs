@@ -109,6 +109,7 @@ namespace Google.MobileAds
         InternalError = 11,
         InvalidArgument = 12,
         ReceivedInvalidResponse = 13,
+        [Obsolete("This error will be replaced with GADErrorNoFill in a future version.")]
         MediationNoFill = 9,
         AdAlreadyUsed = 19,
         ApplicationIdentifierMissing = 20
