@@ -35,8 +35,13 @@ namespace Google.MobileAds
         MobileAds SharedInstance { get; }
 
         // @property(nonatomic, nonnull, readonly) NSString *sdkVersion;
+        [Obsolete("Use VersionNumber property instead.")]
         [Export("sdkVersion")]
         string SdkVersion { get; }
+        
+        // @property (nonatomic, readonly) GADVersionNumber versionNumber;
+        [Export("versionNumber")]
+        VersionNumber VersionNumber { get; }
 
         // @property(nonatomic, assign) float applicationVolume;
         [Export("applicationVolume", ArgumentSemantic.Assign)]
@@ -349,6 +354,7 @@ namespace Google.MobileAds
     [BaseType(typeof(NSObject), Name = "GADRequest")]
     interface Request : INSCopying
     {
+        [Obsolete("Simulators are arleady in test mode by default.")]
         [Field("GADSimulatorID", "__Internal")]
         NSString SimulatorId { get; }
 
@@ -418,17 +424,80 @@ namespace Google.MobileAds
         [NullAllowed, Export("testDeviceIdentifiers", ArgumentSemantic.Copy)]
         string[] TestDeviceIdentifiers { get; set; }
 
+        // @property(nonatomic, nullable, copy) NSNumber *tagForUnderAgeOfConsent;
+        /// <summary>
+        /// <para>
+        /// If you set this property with <c>1</c>, a TFUA parameter will be included in all ad requests, and
+        /// you are indicating that you want ad requests to be handled in a manner suitable for users under
+        /// the age of consent. This parameter disables personalized advertising, including remarketing, for
+        /// all ad requests. It also disables requests to third-party ad vendors, such as ad measurement
+        /// pixels and third-party ad servers.
+        ///</para>
+        /// <para>
+        /// If you set this property with <c>0</c>, you are indicating that you don't want ad requests to be
+        /// handled in a manner suitable for users under the age of consent.
+        /// </para>
+        /// <para>
+        /// If you leave or reset this property as <c>null</c>, ad requests will include no indication
+        /// of how you would like your ad requests to be handled in a manner suitable for users under the
+        /// age of consent.
+        /// </para>
+        /// </summary>
+        [NullAllowed]
+        [Export("tagForUnderAgeOfConsent", ArgumentSemantic.Copy)]
+        int TagForUnderAgeOfConsent { get; set; }
+        
+        // @property(nonatomic, nullable, copy) NSNumber *tagForChildDirectedTreatment;
+        /// <summary>
+        /// <para>
+        /// [Optional] This property indicates whether you would like your app to be treated as
+        /// child-directed for purposes of the Children’s Online Privacy Protection Act (COPPA),
+        /// https://www.ftc.gov/business-guidance/privacy-security/childrens-privacy.
+        /// </para>
+        ///<para>
+        /// If you set this property with <c>1</c>, you are indicating that your app should be treated as
+        /// child-directed for purposes of the Children’s Online Privacy Protection Act (COPPA).
+        /// </para>
+        ///<para>
+        /// If you set this property with <c>0</c>, you are indicating that your app should not be treated as
+        /// child-directed for purposes of the Children’s Online Privacy Protection Act (COPPA).
+        /// </para>
+        ///<para>
+        /// If you leave or reset this property as nil or unknown, ad requests will include no indication of
+        /// how you would like your app treated with respect to COPPA.
+        /// </para>
+        /// <para>
+        /// By setting this property, you certify that this notification is accurate and you are authorized
+        /// to act on behalf of the owner of the app. You understand that abuse of this setting may result
+        /// in termination of your Google account.
+        /// </para>
+        /// </summary>
+        [NullAllowed]
+        [Export("tagForChildDirectedTreatment", ArgumentSemantic.Copy)]
+        int TagForChildDirectedTreatment { get; set; }
+
         // -(void)tagForUnderAgeOfConsent:(BOOL)underAgeOfConsent;
+        [Obsolete("This method is deprecated. Use the TagForUnderAgeOfConsent property instead.")]
         [Export("tagForUnderAgeOfConsent:")]
-        void TagForUnderAgeOfConsent(bool underAgeOfConsent);
+        void UnderAgeofConsent(bool underAgeOfConsent);
 
         // -(void)tagForChildDirectedTreatment:(BOOL)childDirectedTreatment;
+        [Obsolete("This method is deprecated. Use the TagForChildDirectedTreatment property instead.")]
         [Export("tagForChildDirectedTreatment:")]
-        void TagForChildDirectedTreatment(bool childDirectedTreatment);
+        void ChildDirectedTreatment(bool childDirectedTreatment);
 
         // - (void)setSameAppKeyEnabled:(BOOL)enabled;
+        [Obsolete("This method is deprecated. Use the SetPublisherFirstPartyIDEnabled: method instead.")]
         [Export("setSameAppKeyEnabled:")]
         void SameAppKeyEnabled(bool enabled);
+        
+        // @property(nonatomic) GADPublisherPrivacyPersonalizationState publisherPrivacyPersonalizationState;
+        [Export("publisherPrivacyPersonalizationState", ArgumentSemantic.Assign)]
+        PublisherPrivacyPersonalizationState PublisherPrivacyPersonalizationState { get; set; }
+        
+        // - (void)setPublisherFirstPartyIDEnabled:(BOOL)enabled;
+        [Export("setPublisherFirstPartyIDEnabled:")]
+        void SetPublisherFirstPartyIDEnabled(bool enabled);
     }
 
     // @interface GADAdNetworkResponseInfo : NSObject
@@ -1249,6 +1318,10 @@ namespace Google.MobileAds
         // - (BOOL)clickToExpandEnabled;
         [Export("clickToExpandEnabled")]
         bool IsClickToExpandEnabled { get; }
+        
+        // @property(nonatomic, readonly) BOOL isMuted;
+        [Export("isMuted")]
+        bool IsMuted { get; }
     }
 
     interface IVideoControllerDelegate
@@ -2095,22 +2168,6 @@ namespace Google.MobileAds
     [BaseType(typeof(NSObject), Name = "GADCustomEventRequest")]
     interface CustomEventRequest
     {
-        [Export("userHasLocation", ArgumentSemantic.Assign)]
-        bool UserHasLocation { get; }
-
-        [Export("userLatitude", ArgumentSemantic.Assign)]
-        nfloat UserLatitude { get; }
-
-        [Export("userLongitude", ArgumentSemantic.Assign)]
-        nfloat UserLongitude { get; }
-
-        [Export("userLocationAccuracyInMeters", ArgumentSemantic.Assign)]
-        nfloat UserLocationAccuracyInMeters { get; }
-
-        [NullAllowed]
-        [Export("userLocationDescription", ArgumentSemantic.Copy)]
-        string UserLocationDescription { get; }
-
         [NullAllowed]
         [Export("userKeywords", ArgumentSemantic.Copy)]
         NSObject[] UserKeywords { get; }
