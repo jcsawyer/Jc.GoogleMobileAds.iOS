@@ -17,6 +17,13 @@ More info can be found [here](https://developers.google.com/admob/ios/migration#
 
 ### Usage
 
+To use Jc.GoogleMobileAds.iOS, you can add the required packages to your project:
+
+```
+dotnet add package Jc.GMA.iOS
+dotnet add package Jc.UMP.iOS
+```
+
 To use the latest `v11.13.0`, you must add this target to your csproj file to support linking with Swift system libraries
 
 ```xml
