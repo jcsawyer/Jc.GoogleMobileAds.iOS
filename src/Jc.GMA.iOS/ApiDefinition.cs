@@ -2519,10 +2519,7 @@ namespace Google.MobileAds.DoubleClick
         void WillChangeAdSizeTo(BannerView view, AdSize size);
     }
 
-    [BaseType(typeof(UIView),
-        Name = "GAMBannerView",
-        Delegates = new string[] { "AdSizeDelegate" },
-        Events = new Type[] { typeof(AdSizeDelegate) })]
+    [BaseType(typeof(Google.MobileAds.BannerView), Name = "GAMBannerView")]
     interface BannerView
     {
         [Export("initWithFrame:")]
