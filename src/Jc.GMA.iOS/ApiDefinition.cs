@@ -761,7 +761,7 @@ namespace Google.MobileAds
 
     // @interface GADAppOpenAd : GADFullScreenPresentingAd
     [DisableDefaultCtor]
-    [BaseType(typeof(FullScreenContentDelegate), Name = "GADAppOpenAd")]
+    [BaseType(typeof(FullScreenPresentingAd), Name = "GADAppOpenAd")]
     interface AppOpenAd
     {
         // + (void)loadWithAdUnitID:(nonnull NSString *)adUnitID request:(nullable GADRequest *)request orientation:(UIInterfaceOrientation)orientation completionHandler:(nonnull GADAppOpenAdLoadCompletionHandler)completionHandler;
@@ -792,7 +792,7 @@ namespace Google.MobileAds
 
         // - (void) presentFromRootViewController:(nonnull UIViewController *)rootViewController;
         [Export("presentFromRootViewController:")]
-        void PresentFromRootViewController([NullAllowed] UIViewController rootViewController);
+        void Present([NullAllowed] UIViewController rootViewController);
         
         // @property (nonatomic, readonly, nonnull) NSString *adUnitID;
         [Export("adUnitID")]
