@@ -374,6 +374,10 @@ namespace Google.MobileAds
 
         [Export("removeAdNetworkExtrasFor:")]
         void RemoveAdNetworkExtrasFor(Class aClass);
+        
+        [NullAllowed]
+        [Export("scene", ArgumentSemantic.Weak)]
+        UIWindowScene Scene { get; set; }
 
         [Export("setLocationWithLatitude:longitude:accuracy:")]
         void SetLocation(nfloat latitude, nfloat longitude, nfloat accuracyInMeters);
@@ -393,6 +397,10 @@ namespace Google.MobileAds
         [NullAllowed]
         [Export("requestAgent", ArgumentSemantic.Copy)]
         string RequestAgent { get; set; }
+        
+        [NullAllowed]
+        [Export("customTargeting", ArgumentSemantic.Copy)]
+        NSDictionary<NSString, NSString> CustomTargeting { get; set; }
     }
 
     [Static]
@@ -2615,6 +2623,11 @@ namespace Google.MobileAds.DoubleClick
     [BaseType(typeof(Google.MobileAds.Request), Name = "GAMRequest")]
     interface Request
     {
+        [New]
+        [Static]
+        [Export ("request")]
+        Request GetDefaultRequest ();
+        
         [NullAllowed]
         [Export("publisherProvidedID", ArgumentSemantic.Copy)]
         string PublisherProvidedID { get; set; }
