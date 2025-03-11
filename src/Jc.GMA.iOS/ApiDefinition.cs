@@ -379,6 +379,10 @@ namespace Google.MobileAds
 
         [Export("removeAdNetworkExtrasFor:")]
         void RemoveAdNetworkExtrasFor(Class aClass);
+        
+        [NullAllowed]
+        [Export("scene", ArgumentSemantic.Weak)]
+        UIWindowScene Scene { get; set; }
 
         [Export("setLocationWithLatitude:longitude:accuracy:")]
         void SetLocation(nfloat latitude, nfloat longitude, nfloat accuracyInMeters);
@@ -398,6 +402,10 @@ namespace Google.MobileAds
         [NullAllowed]
         [Export("requestAgent", ArgumentSemantic.Copy)]
         string RequestAgent { get; set; }
+        
+        [NullAllowed]
+        [Export("customTargeting", ArgumentSemantic.Copy)]
+        NSDictionary<NSString, NSString> CustomTargeting { get; set; }
     }
 
     [Static]
@@ -766,7 +774,7 @@ namespace Google.MobileAds
 
     // @interface GADAppOpenAd : GADFullScreenPresentingAd
     [DisableDefaultCtor]
-    [BaseType(typeof(FullScreenContentDelegate), Name = "GADAppOpenAd")]
+    [BaseType(typeof(FullScreenPresentingAd), Name = "GADAppOpenAd")]
     interface AppOpenAd
     {
         // + (void)loadWithAdUnitID:(nonnull NSString *)adUnitID request:(nullable GADRequest *)request orientation:(UIInterfaceOrientation)orientation completionHandler:(nonnull GADAppOpenAdLoadCompletionHandler)completionHandler;
@@ -797,7 +805,7 @@ namespace Google.MobileAds
 
         // - (void) presentFromRootViewController:(nonnull UIViewController *)rootViewController;
         [Export("presentFromRootViewController:")]
-        void PresentFromRootViewController([NullAllowed] UIViewController rootViewController);
+        void Present([NullAllowed] UIViewController rootViewController);
         
         // @property (nonatomic, readonly, nonnull) NSString *adUnitID;
         [Export("adUnitID")]
@@ -2524,10 +2532,7 @@ namespace Google.MobileAds.DoubleClick
         void WillChangeAdSizeTo(BannerView view, AdSize size);
     }
 
-    [BaseType(typeof(UIView),
-        Name = "GAMBannerView",
-        Delegates = new string[] { "AdSizeDelegate" },
-        Events = new Type[] { typeof(AdSizeDelegate) })]
+    [BaseType(typeof(Google.MobileAds.BannerView), Name = "GAMBannerView")]
     interface BannerView
     {
         [Export("initWithFrame:")]
@@ -2623,6 +2628,11 @@ namespace Google.MobileAds.DoubleClick
     [BaseType(typeof(Google.MobileAds.Request), Name = "GAMRequest")]
     interface Request
     {
+        [New]
+        [Static]
+        [Export ("request")]
+        Request GetDefaultRequest ();
+        
         [NullAllowed]
         [Export("publisherProvidedID", ArgumentSemantic.Copy)]
         string PublisherProvidedID { get; set; }
