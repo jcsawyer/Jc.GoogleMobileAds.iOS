@@ -17,9 +17,9 @@ namespace Google.MobileAds
     [StructLayout(LayoutKind.Sequential)]
     public struct VersionNumber
     {
-        public int MajorVersion;
-        public int MinorVersion;
-        public int PatchVersion;
+        public nint MajorVersion;
+        public nint MinorVersion;
+        public nint PatchVersion;
     }
 
     [Native]
