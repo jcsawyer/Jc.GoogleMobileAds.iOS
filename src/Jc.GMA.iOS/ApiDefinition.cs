@@ -80,10 +80,10 @@ namespace Google.MobileAds
         // -(void)disableMediationInitialization;
         [Export("disableMediationInitialization")]
         void DisableMediationInitialization();
-
-        // - (void)presentAdInspectorFromViewController:(nonnull UIViewController *)viewController completionHandler: (nullable GADAdInspectorCompletionHandler)completionHandler;
-        [Export("presentAdInspectorFromViewController:viewController:")]
-        void PresentAdInspectorFromViewController(UIViewController viewConroller, AdInspectorCompletionHandler completionHandler);
+        
+        // - (void)presentAdInspectorFromViewController: (nullable UIViewController *)viewController completionHandler: (nullable GADAdInspectorCompletionHandler)completionHandler;
+        [Export("presentAdInspectorFromViewController:completionHandler:")]
+        void PresentAdInspectorFromViewController([NullAllowed] UIViewController viewController, [NullAllowed] AdInspectorCompletionHandler completionHandler);
         
         // - (void)registerWebView:(nonnull WKWebView *)webView;
         [Export("registerWebView:")]
