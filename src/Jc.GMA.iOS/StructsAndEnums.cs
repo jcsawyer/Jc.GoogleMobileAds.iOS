@@ -81,7 +81,9 @@ namespace Google.MobileAds
         AdNotReady = 15,
         AdTooLarge = 16,
         Internal = 17,
-        AdAlreadyUsed = 18
+        AdAlreadyUsed = 18,
+        NotMainThread = 21,
+        Mediation = 22,
     }
 
     //GADRequest file
@@ -108,11 +110,9 @@ namespace Google.MobileAds
         MediationInvalidAdSize = 10,
         InternalError = 11,
         InvalidArgument = 12,
-        ReceivedInvalidResponse = 13,
-        [Obsolete("This error will be replaced with GADErrorNoFill in a future version.")]
-        MediationNoFill = 9,
         AdAlreadyUsed = 19,
-        ApplicationIdentifierMissing = 20
+        ApplicationIdentifierMissing = 20,
+        ReceivedInvalidAdString = 21,
     }
 
     [Native]
