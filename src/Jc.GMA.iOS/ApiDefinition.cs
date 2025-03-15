@@ -363,10 +363,6 @@ namespace Google.MobileAds
     [BaseType(typeof(NSObject), Name = "GADRequest")]
     interface Request : INSCopying
     {
-        [Obsolete("Simulators are arleady in test mode by default.")]
-        [Field("GADSimulatorID", "__Internal")]
-        NSString SimulatorId { get; }
-
         [Static]
         [Export("request")]
         Request GetDefaultRequest();
@@ -405,7 +401,7 @@ namespace Google.MobileAds
         
         [NullAllowed]
         [Export("customTargeting", ArgumentSemantic.Copy)]
-        NSDictionary<NSString, NSString> CustomTargeting { get; set; }
+        NSDictionary<NSString, NSObject> CustomTargeting { get; set; }
     }
 
     [Static]
@@ -895,26 +891,6 @@ namespace Google.MobileAds
         string CustomRewardString { get; set; }
     }
 
-    [BaseType(typeof(BannerView), Name = "GADSearchBannerView")]
-    interface SearchBannerView
-    {
-
-        [Export("initWithFrame:")]
-        NativeHandle Constructor(CGRect frame);
-
-        [Export("initWithAdSize:origin:")]
-        NativeHandle Constructor(AdSize size, CGPoint origin);
-
-        [Export("initWithAdSize:")]
-        NativeHandle Constructor(AdSize size);
-
-        // @property(nonatomic, weak) IBOutlet id<GADAdSizeDelegate> adSizeDelegate;
-        [New]
-        [NullAllowed]
-        [Export("adSizeDelegate", ArgumentSemantic.Weak)]
-        IAdSizeDelegate AdSizeDelegate { get; set; }
-    }
-
     // @interface GADNativeAd : NSObject
     [BaseType(typeof(NSObject),
            Name = "GADNativeAd",
@@ -1340,8 +1316,8 @@ namespace Google.MobileAds
         [Export("clickToExpandEnabled")]
         bool IsClickToExpandEnabled { get; }
         
-        // @property(nonatomic, readonly) BOOL isMuted;
-        [Export("isMuted")]
+        // @property(nonatomic, getter=isMuted) BOOL muted;
+        [Export("muted")]
         bool IsMuted { get; }
     }
 
@@ -2249,194 +2225,6 @@ namespace Google.MobileAds
         bool Start([NullAllowed] out NSError error);
     }
 
-    // @interface GADDynamicHeightSearchRequest : GADRequest
-    [BaseType(typeof(Request), Name = "GADDynamicHeightSearchRequest")]
-    interface DynamicHeightSearchRequest
-    {
-        // @property (copy, nonatomic) NSString * query;
-        [NullAllowed]
-        [Export("query")]
-        string Query { get; set; }
-
-        // @property (assign, nonatomic) NSInteger adPage;
-        [Export("adPage")]
-        nint AdPage { get; set; }
-
-        // @property (assign, nonatomic) BOOL adTestEnabled;
-        [Export("adTestEnabled")]
-        bool AdTestEnabled { get; set; }
-
-        // @property (copy, nonatomic) NSString * channel;
-        [NullAllowed]
-        [Export("channel")]
-        string Channel { get; set; }
-
-        // @property (copy, nonatomic) NSString * hostLanguage;
-        [NullAllowed]
-        [Export("hostLanguage")]
-        string HostLanguage { get; set; }
-
-        // @property (copy, nonatomic) NSString * locationExtensionTextColor;
-        [NullAllowed]
-        [Export("locationExtensionTextColor")]
-        string LocationExtensionTextColor { get; set; }
-
-        // @property (assign, nonatomic) CGFloat locationExtensionFontSize;
-        [Export("locationExtensionFontSize")]
-        nfloat LocationExtensionFontSize { get; set; }
-
-        // @property (assign, nonatomic) BOOL clickToCallExtensionEnabled;
-        [Export("clickToCallExtensionEnabled")]
-        bool ClickToCallExtensionEnabled { get; set; }
-
-        // @property (assign, nonatomic) BOOL locationExtensionEnabled;
-        [Export("locationExtensionEnabled")]
-        bool LocationExtensionEnabled { get; set; }
-
-        // @property (assign, nonatomic) BOOL plusOnesExtensionEnabled;
-        [Export("plusOnesExtensionEnabled")]
-        bool PlusOnesExtensionEnabled { get; set; }
-
-        // @property (assign, nonatomic) BOOL sellerRatingsExtensionEnabled;
-        [Export("sellerRatingsExtensionEnabled")]
-        bool SellerRatingsExtensionEnabled { get; set; }
-
-        // @property (assign, nonatomic) BOOL siteLinksExtensionEnabled;
-        [Export("siteLinksExtensionEnabled")]
-        bool SiteLinksExtensionEnabled { get; set; }
-
-        // @property (copy, nonatomic) NSString * CSSWidth;
-        [NullAllowed]
-        [Export("CSSWidth")]
-        string CssWidth { get; set; }
-
-        // @property (assign, nonatomic) NSInteger numberOfAds;
-        [Export("numberOfAds")]
-        nint NumberOfAds { get; set; }
-
-        // @property (copy, nonatomic) NSString * fontFamily;
-        [Export("fontFamily")]
-        string FontFamily { get; set; }
-
-        // @property (copy, nonatomic) NSString * attributionFontFamily;
-        [NullAllowed]
-        [Export("attributionFontFamily")]
-        string AttributionFontFamily { get; set; }
-
-        // @property (assign, nonatomic) CGFloat annotationFontSize;
-        [Export("annotationFontSize")]
-        nfloat AnnotationFontSize { get; set; }
-
-        // @property (assign, nonatomic) CGFloat attributionFontSize;
-        [Export("attributionFontSize")]
-        nfloat AttributionFontSize { get; set; }
-
-        // @property (assign, nonatomic) CGFloat descriptionFontSize;
-        [Export("descriptionFontSize")]
-        nfloat DescriptionFontSize { get; set; }
-
-        // @property (assign, nonatomic) CGFloat domainLinkFontSize;
-        [Export("domainLinkFontSize")]
-        nfloat DomainLinkFontSize { get; set; }
-
-        // @property (assign, nonatomic) CGFloat titleFontSize;
-        [Export("titleFontSize")]
-        nfloat TitleFontSize { get; set; }
-
-        // @property (copy, nonatomic) NSString * adBorderColor;
-        [NullAllowed]
-        [Export("adBorderColor")]
-        string AdBorderColor { get; set; }
-
-        // @property (copy, nonatomic) NSString * adSeparatorColor;
-        [NullAllowed]
-        [Export("adSeparatorColor")]
-        string AdSeparatorColor { get; set; }
-
-        // @property (copy, nonatomic) NSString * annotationTextColor;
-        [NullAllowed]
-        [Export("annotationTextColor")]
-        string AnnotationTextColor { get; set; }
-
-        // @property (copy, nonatomic) NSString * attributionTextColor;
-        [NullAllowed]
-        [Export("attributionTextColor")]
-        string AttributionTextColor { get; set; }
-
-        // @property (copy, nonatomic) NSString * backgroundColor;
-        [NullAllowed]
-        [Export("backgroundColor")]
-        string BackgroundColor { get; set; }
-
-        // @property (copy, nonatomic) NSString * borderColor;
-        [NullAllowed]
-        [Export("borderColor")]
-        string BorderColor { get; set; }
-
-        // @property (copy, nonatomic) NSString * domainLinkColor;
-        [NullAllowed]
-        [Export("domainLinkColor")]
-        string DomainLinkColor { get; set; }
-
-        // @property (copy, nonatomic) NSString * textColor;
-        [NullAllowed]
-        [Export("textColor")]
-        string TextColor { get; set; }
-
-        // @property (copy, nonatomic) NSString * titleLinkColor;
-        [NullAllowed]
-        [Export("titleLinkColor")]
-        string TitleLinkColor { get; set; }
-
-        // @property (copy, nonatomic) NSString * adBorderCSSSelections;
-        [NullAllowed]
-        [Export("adBorderCSSSelections")]
-        string AdBorderCssSelections { get; set; }
-
-        // @property (assign, nonatomic) CGFloat adjustableLineHeight;
-        [Export("adjustableLineHeight")]
-        nfloat AdjustableLineHeight { get; set; }
-
-        // @property (assign, nonatomic) CGFloat attributionBottomSpacing;
-        [Export("attributionBottomSpacing")]
-        nfloat AttributionBottomSpacing { get; set; }
-
-        // @property (copy, nonatomic) NSString * borderCSSSelections;
-        [NullAllowed]
-        [Export("borderCSSSelections")]
-        string BorderCssSelections { get; set; }
-
-        // @property (assign, nonatomic) BOOL titleUnderlineHidden;
-        [Export("titleUnderlineHidden")]
-        bool TitleUnderlineHidden { get; set; }
-
-        // @property (assign, nonatomic) BOOL boldTitleEnabled;
-        [Export("boldTitleEnabled")]
-        bool BoldTitleEnabled { get; set; }
-
-        // @property (assign, nonatomic) CGFloat verticalSpacing;
-        [Export("verticalSpacing")]
-        nfloat VerticalSpacing { get; set; }
-
-        // @property (assign, nonatomic) BOOL detailedAttributionExtensionEnabled;
-        [Export("detailedAttributionExtensionEnabled")]
-        bool DetailedAttributionExtensionEnabled { get; set; }
-
-        // @property (assign, nonatomic) BOOL longerHeadlinesExtensionEnabled;
-        [Export("longerHeadlinesExtensionEnabled")]
-        bool LongerHeadlinesExtensionEnabled { get; set; }
-
-        // @property(nonatomic, copy, nullable) NSString *styleID;
-        [NullAllowed]
-        [Export("styleID", ArgumentSemantic.Copy)]
-        string StyleId { get; set; }
-
-        // -(void)setAdvancedOptionValue:(id)value forKey:(NSString *)key;
-        [Export("setAdvancedOptionValue:forKey:")]
-        void SetAdvancedOptionValue(NSObject value, string key);
-    }
-
-
     // @interface GADAdapterStatus : NSObject <NSCopying>
     [BaseType(typeof(NSObject), Name = "GADAdapterStatus")]
     interface AdapterStatus : INSCopying
@@ -2598,8 +2386,8 @@ namespace Google.MobileAds.DoubleClick
         [Export("adSizeDelegate", ArgumentSemantic.Weak)]
         Google.MobileAds.IAdSizeDelegate AdSizeDelegate { get; set; }
 
-        // @property(nonatomic, assign) BOOL enableManualImpressions;
-        [Export("enableManualImpressions", ArgumentSemantic.Assign)]
+        // @property(nonatomic, assign, getter=isManualImpressionEnabled) BOOL manualImpressionEnabled;
+        [Export("manualImpressionEnabled", ArgumentSemantic.Assign)]
         bool EnableManualImpressions { get; set; }
     }
 
