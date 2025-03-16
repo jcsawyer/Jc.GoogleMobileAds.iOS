@@ -898,6 +898,11 @@ namespace Google.MobileAds
            Events = new[] { typeof(NativeAdDelegate), typeof(NativeAdUnconfirmedClickDelegate) })]
     interface NativeAd
     {
+        // @property (readonly, copy, nonatomic) NSString * _Nullable headline;
+        [NullAllowed]
+        [Export("headline")]
+        string Headline { get; }
+
         // @property (readonly, copy, nonatomic) NSString * _Nullable callToAction;
         [NullAllowed]
         [Export("callToAction")]
@@ -1033,6 +1038,21 @@ namespace Google.MobileAds
         [Abstract]
         [Export("adLoader:didReceiveUnifiedNativeAd:")]
         void DidReceiveUnifiedNativeAd(AdLoader adLoader, NativeAd nativeAd);
+    }
+
+    interface INativeAdLoaderDelegate { }
+
+    // CHECK
+    // @protocol GADNativeAdLoaderDelegate <GADAdLoaderDelegate>
+    [Model]
+    [Protocol]
+    [BaseType(typeof(NSObject), Name = "GADNativeAdLoaderDelegate")]
+    interface NativeAdLoaderDelegate : AdLoaderDelegate
+    {
+        // @required -(void)adLoader:(GADAdLoader * _Nonnull)adLoader didReceiveNativeAd:(GADNativeAd * _Nonnull)nativeAd;
+        [Abstract]
+        [Export("adLoader:didReceiveNativeAd:")]
+        void DidReceiveNativeAd(AdLoader adLoader, NativeAd nativeAd);
     }
 
     // @interface GADNativeAdView : UIView
@@ -1393,6 +1413,22 @@ namespace Google.MobileAds
     [BaseType(typeof(NSObject), Name = "GADAdLoaderOptions")]
     interface AdLoaderOptions
     {
+    }
+
+    [Static]
+    interface AdLoadAdTypeConstants
+    {
+        // extern GADAdLoaderAdType  _Nonnull const GADAdLoaderAdTypeCustomNative;
+        [Field ("GADAdLoaderAdTypeCustomNative", "__Internal")]
+        NSString CustomNative { get; }
+
+        // extern NS_SWIFT_NAME(adManagerBanner) GADAdLoaderAdType GADAdLoaderAdTypeGAMBanner __attribute__((swift_name("adManagerBanner")));
+        [Field ("GADAdLoaderAdTypeGAMBanner", "__Internal")]
+        NSString GamBanner { get; }
+
+        // extern GADAdLoaderAdType  _Nonnull const GADAdLoaderAdTypeNative;
+        [Field ("GADAdLoaderAdTypeNative", "__Internal")]
+        NSString Native { get; }
     }
 
     // @interface GADAdLoader : NSObject

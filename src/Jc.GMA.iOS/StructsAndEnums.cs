@@ -51,21 +51,6 @@ namespace Google.MobileAds
         Disabled = 2,
     }
 
-    public enum AdLoaderAdType
-    {
-        // extern NSString *const GADAdLoaderAdTypeCustomNative;
-        [Field("GADAdLoaderAdTypeCustomNative", "__Internal")]
-        CustomNative,
-
-        // extern NSString *const GADAdLoaderAdTypeGAMBanner;
-        [Field("GADAdLoaderAdTypeGAMBanner", "__Internal")]
-        GamBanner,
-
-        // extern NSString *const GADAdLoaderAdTypeNative;
-        [Field("GADAdLoaderAdTypeNative", "__Internal")]
-        Native
-    }
-
     [Native]
     public enum AdValuePrecision : long
     {
