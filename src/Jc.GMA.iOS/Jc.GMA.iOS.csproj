@@ -15,7 +15,7 @@
 		<RepositoryUrl>https://github.com/jcsawyer/Jc.GoogleMobileAds.iOS/tree/main</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<Version>12.2.0-preview100</Version>
+		<Version>12.2.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
