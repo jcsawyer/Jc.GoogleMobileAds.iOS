@@ -2,6 +2,11 @@
 
 Google Mobile Ads SDK iOS Bindings
 
+# Package Showcase
+
+- [marius-bughiu](https://github.com/marius-bughiu) - [Plugin.AdMob](https://github.com/marius-bughiu/Plugin.AdMob) - AdMob plugin for .NET MAUI
+- [jcsawyer](https://github.com/jcsawyer) - [Jc.AdMob.Avalonia](https://github.com/jcsawyer/Jc.AdMob.Avalonia) - AdMob plugin for Avalonia mobile projects
+
 # Breaking Changes
 
 Each major version contains breaking changes according to the Google AdMob SDK. Please refer to the [Google AdMob SDK](https://developers.google.com/admob/ios/release-notes) for more information.
