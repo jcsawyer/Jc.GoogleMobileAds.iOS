@@ -613,13 +613,13 @@ namespace Google.MobileAds
         [Export("paidEventHandler", ArgumentSemantic.Copy)]
         PaidEventHandler PaidEventHandler { get; set; }
 
-        // -(BOOL)canPresentFromRootViewController:(UIViewController * _Nonnull)rootViewController error:(NSError * _Nullable * _Nullable)error;
+        // - (BOOL)canPresentFromRootViewController:(nullable UIViewController *)rootViewController error:(NSError *_Nullable __autoreleasing *_Nullable)error NS_SWIFT_NAME(canPresent(from:)) NS_SWIFT_UI_ACTOR;
         [Export("canPresentFromRootViewController:error:")]
-        bool CanPresent(UIViewController rootViewController, [NullAllowed] out NSError error);
+        bool CanPresent([NullAllowed] UIViewController rootViewController, [NullAllowed] out NSError error);
 
-        // -(void)presentFromRootViewController:(nonnull UIViewController *)rootViewController userDidEarnRewardHandler:(nonnull GADUserDidEarnRewardHandler)userDidEarnRewardHandler;
+        // - (void)presentFromRootViewController:(nullable UIViewController *)rootViewController userDidEarnRewardHandler:(nonnull GADUserDidEarnRewardHandler)userDidEarnRewardHandler NS_SWIFT_NAME(present(from:userDidEarnRewardHandler:)) NS_SWIFT_UI_ACTOR;
         [Export("presentFromRootViewController:userDidEarnRewardHandler:")]
-        void Present(UIViewController viewController, UserDidEarnRewardHandler userDidEarnRewardHandler);
+        void Present([NullAllowed] UIViewController viewController, UserDidEarnRewardHandler userDidEarnRewardHandler);
 
         [Export("adMetadata")]
         NSDictionary<NSString, NSObject> AdMetadata { get; }
