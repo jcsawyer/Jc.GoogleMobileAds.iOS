@@ -11,7 +11,7 @@ namespace Google.MobileAds
     public struct AdSize
     {
         public CGSize Size;
-        public uint Flags;
+        public nuint Flags;
     }
 
     [StructLayout(LayoutKind.Sequential)]

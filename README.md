@@ -12,6 +12,12 @@ Google Mobile Ads SDK iOS Bindings
 Each major version contains breaking changes according to the Google AdMob SDK. Please refer to the [Google AdMob SDK](https://developers.google.com/admob/ios/release-notes) for more information.
 The headline changes relevant will be listed here.
 
+## v12.2.2
+`AdSizeCons` constants were changed to be hardcoded while I try to find a better approach to access the true values.
+This means that values will be the same for both iPhone and iPad.
+
+`SmartBannerPortrait`, `SmartBannerLandscape`, and `Fluid` have been removed until a workaround is discovered as these are entirely dependent on the framework or the calling framework (MAUI/Avalonia/etc.)
+
 ## v9.x.x to v11.x.x
 
 - The minimum supported version of iOS is now 13.
