@@ -96,147 +96,19 @@ namespace Google.MobileAds {
 			return _GetFromNSValue (value.Handle);
 		}
 
-		static AdSize? banner;
-		public static AdSize Banner {
-			get {
-				if (banner == null) {
-					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen (null, 0);
-					IntPtr ptr = Dlfcn.dlsym (RTLD_MAIN_ONLY, "GADAdSizeBanner");
-					banner = (AdSize) Marshal.PtrToStructure (ptr, typeof (AdSize));
-					Dlfcn.dlclose (RTLD_MAIN_ONLY);
-				}
+		public static AdSize Banner => new AdSize { Size = new CGSize (320, 50) };
 
-				return banner.Value;
-			}
-		}
+		public static AdSize LargeBanner => new AdSize { Size = new CGSize (320, 100) };
 
-		static AdSize? largeBanner;
-		public static AdSize LargeBanner {
-			get {
-				if (largeBanner == null) {
-					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen (null, 0);
-					IntPtr ptr = Dlfcn.dlsym (RTLD_MAIN_ONLY, "GADAdSizeLargeBanner");
-					largeBanner = (AdSize) Marshal.PtrToStructure (ptr, typeof (AdSize));
-					Dlfcn.dlclose (RTLD_MAIN_ONLY);
-				}
+		public static AdSize MediumRectangle => new AdSize { Size = new CGSize (300, 250) };
 
-				return largeBanner.Value;
-			}
-		}
+		public static AdSize FullBanner => new AdSize { Size = new CGSize (486, 60) };
 
-		static AdSize? mediumRectangle;
-		public static AdSize MediumRectangle {
-			get {
-				if (mediumRectangle == null) {
-					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen (null, 0);
-					IntPtr ptr = Dlfcn.dlsym (RTLD_MAIN_ONLY, "GADAdSizeMediumRectangle");
-					mediumRectangle = (AdSize) Marshal.PtrToStructure (ptr, typeof (AdSize));
-					Dlfcn.dlclose (RTLD_MAIN_ONLY);
-				}
+		public static AdSize Leaderboard => new AdSize { Size = new CGSize (728, 90) };
 
-				return mediumRectangle.Value;
-			}
-		}
+		public static AdSize Skyscraper => new AdSize { Size = new CGSize (160, 600) };
 
-		static AdSize? fullBanner;
-		public static AdSize FullBanner {
-			get {
-				if (fullBanner == null) {
-					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen (null, 0);
-					IntPtr ptr = Dlfcn.dlsym (RTLD_MAIN_ONLY, "GADAdSizeFullBanner");
-					fullBanner = (AdSize) Marshal.PtrToStructure (ptr, typeof (AdSize));
-					Dlfcn.dlclose (RTLD_MAIN_ONLY);
-				}
-
-				return fullBanner.Value;
-			}
-		}
-
-		static AdSize? leaderboard;
-		public static AdSize Leaderboard {
-			get {
-				if (leaderboard == null) {
-					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen (null, 0);
-					IntPtr ptr = Dlfcn.dlsym (RTLD_MAIN_ONLY, "GADAdSizeLeaderboard");
-					leaderboard = (AdSize) Marshal.PtrToStructure (ptr, typeof (AdSize));
-					Dlfcn.dlclose (RTLD_MAIN_ONLY);
-				}
-
-				return leaderboard.Value;
-			}
-		}
-
-		static AdSize? skyscraper;
-		public static AdSize Skyscraper {
-			get {
-				if (skyscraper == null) {
-					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen (null, 0);
-					IntPtr ptr = Dlfcn.dlsym (RTLD_MAIN_ONLY, "GADAdSizeSkyscraper");
-					skyscraper = (AdSize) Marshal.PtrToStructure (ptr, typeof (AdSize));
-					Dlfcn.dlclose (RTLD_MAIN_ONLY);
-				}
-
-				return skyscraper.Value;
-			}
-		}
-
-		static AdSize? smartBannerPortrait;
-		[Obsolete ("Smart Banner has been deprecated, please use Adaptive Banner. This will be removed in future versions.")]
-		public static AdSize SmartBannerPortrait {
-			get {
-				if (smartBannerPortrait == null) {
-					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen (null, 0);
-					IntPtr ptr = Dlfcn.dlsym (RTLD_MAIN_ONLY, "kGADAdSizeSmartBannerPortrait");
-					smartBannerPortrait = (AdSize) Marshal.PtrToStructure (ptr, typeof (AdSize));
-					Dlfcn.dlclose (RTLD_MAIN_ONLY);
-				}
-
-				return smartBannerPortrait.Value;
-			}
-		}
-
-		static AdSize? smartBannerLandscape;
-		[Obsolete ("Smart Banner has been deprecated, please use Adaptive Banner. This will be removed in future versions.")]
-		public static AdSize SmartBannerLandscape {
-			get {
-				if (smartBannerLandscape == null) {
-					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen (null, 0);
-					IntPtr ptr = Dlfcn.dlsym (RTLD_MAIN_ONLY, "kGADAdSizeSmartBannerLandscape");
-					smartBannerLandscape = (AdSize) Marshal.PtrToStructure (ptr, typeof (AdSize));
-					Dlfcn.dlclose (RTLD_MAIN_ONLY);
-				}
-
-				return smartBannerLandscape.Value;
-			}
-		}
-
-		static AdSize? fluid;
-		public static AdSize Fluid {
-			get {
-				if (fluid == null) {
-					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen (null, 0);
-					IntPtr ptr = Dlfcn.dlsym (RTLD_MAIN_ONLY, "GADAdSizeFluid");
-					fluid = (AdSize) Marshal.PtrToStructure (ptr, typeof (AdSize));
-					Dlfcn.dlclose (RTLD_MAIN_ONLY);
-				}
-
-				return fluid.Value;
-			}
-		}
-
-		static AdSize? invalid;
-		public static AdSize Invalid {
-			get {
-				if (invalid == null) {
-					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen (null, 0);
-					IntPtr ptr = Dlfcn.dlsym (RTLD_MAIN_ONLY, "GADAdSizeInvalid");
-					invalid = (AdSize) Marshal.PtrToStructure (ptr, typeof (AdSize));
-					Dlfcn.dlclose (RTLD_MAIN_ONLY);
-				}
-
-				return invalid.Value;
-			}
-		}
+		public static AdSize Invalid => new AdSize { Size = new CGSize (0, 0) };
 
 		public static string GetString (AdSize size)
 		{
