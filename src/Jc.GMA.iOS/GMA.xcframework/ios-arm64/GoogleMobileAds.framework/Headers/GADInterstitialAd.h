@@ -40,6 +40,10 @@ NS_SWIFT_NAME(InterstitialAd)
 /// Called when the ad is estimated to have earned money. Available for allowlisted accounts only.
 @property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
+/// An identifier for a placement in reporting. This property must be set prior to presenting the
+/// ad.
+@property(nonatomic, readwrite) int64_t placementID;
+
 /// Loads an interstitial ad.
 ///
 /// @param adUnitID An ad unit ID created in the AdMob or Ad Manager UI.

@@ -312,6 +312,10 @@ namespace Google.MobileAds
         [NullAllowed]
         [Export("paidEventHandler", ArgumentSemantic.Copy)]
         PaidEventHandler PaidEventHandler { get; set; }
+        
+        // @property(nonatomic, readwrite) int64_t placementID;
+        [Export("placementID")]
+        long PlacementId { get; set; }
 
         // -(BOOL)canPresentFromRootViewController:(UIViewController * _Nonnull)rootViewController error:(NSError * _Nullable * _Nullable)error;
         [Export("canPresentFromRootViewController:error:")]
@@ -394,6 +398,10 @@ namespace Google.MobileAds
         [NullAllowed]
         [Export("neighboringContentURLStrings", ArgumentSemantic.Copy)]
         string[] NeighboringContentUrlStrings { get; set; }
+        
+        // @property(nonatomic, readwrite) int64_t placementID;
+        [Export("placementID")]
+        long PlacementId { get; set; }
 
         [NullAllowed]
         [Export("requestAgent", ArgumentSemantic.Copy)]
@@ -612,6 +620,10 @@ namespace Google.MobileAds
         [NullAllowed]
         [Export("paidEventHandler", ArgumentSemantic.Copy)]
         PaidEventHandler PaidEventHandler { get; set; }
+        
+        // @property(nonatomic, readwrite) int64_t placementID;
+        [Export("placementID")]
+        long PlacementId { get; set; }
 
         // - (BOOL)canPresentFromRootViewController:(nullable UIViewController *)rootViewController error:(NSError *_Nullable __autoreleasing *_Nullable)error NS_SWIFT_NAME(canPresent(from:)) NS_SWIFT_UI_ACTOR;
         [Export("canPresentFromRootViewController:error:")]
@@ -970,6 +982,10 @@ namespace Google.MobileAds
         [NullAllowed]
         [Export("paidEventHandler", ArgumentSemantic.Copy)]
         PaidEventHandler PaidEventHandler { get; set; }
+        
+        // @property(nonatomic, readwrite) int64_t placementID;
+        [Export("placementID")]
+        long PlacementId { get; set; }
 
         // @property(nonatomic, readonly, getter=isCustomMuteThisAdAvailable) BOOL customMuteThisAdAvailable;
         [Export("isCustomMuteThisAdAvailable")]

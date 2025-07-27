@@ -58,6 +58,10 @@ NS_SWIFT_NAME(AppOpenAd)
 /// Called when the ad is estimated to have earned money. Available for allowlisted accounts only.
 @property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
+/// An identifier for a placement in reporting. This property must be set prior to presenting the
+/// ad.
+@property(nonatomic, readwrite) int64_t placementID;
+
 /// Indicates whether the app open ad can be presented from the provided root view controller. Must
 /// be called on the main thread.
 ///
