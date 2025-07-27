@@ -72,6 +72,10 @@ NS_SWIFT_NAME(NativeAd)
 /// Called when the ad is estimated to have earned money. Available for allowlisted accounts only.
 @property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
+/// An identifier for a placement in reporting. This property must be set prior to associating the
+/// ad with a GADNativeAdView.
+@property(nonatomic, readwrite) int64_t placementID;
+
 /// Indicates whether custom Mute This Ad is available for the native ad.
 @property(nonatomic, readonly, getter=isCustomMuteThisAdAvailable)
     BOOL customMuteThisAdAvailable NS_SWIFT_NAME(isCustomMuteThisAdAvailable);

@@ -57,6 +57,10 @@ NS_SWIFT_NAME(Request)
 @property(nonatomic, copy, nullable)
     NSArray<NSString *> *neighboringContentURLStrings NS_SWIFT_NAME(neighboringContentURLs);
 
+/// An identifier for a placement in reporting. A value set here will be set onto any ad returned by
+/// this request.
+@property(atomic, readwrite) int64_t placementID;
+
 #pragma mark Request Agent Information
 
 /// String that identifies the ad request's origin. Third party libraries that reference the Mobile
