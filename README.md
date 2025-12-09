@@ -13,6 +13,7 @@ Each major version contains breaking changes according to the Google AdMob SDK. 
 The headline changes relevant will be listed here.
 
 ## v12.2.2
+
 `AdSizeCons` constants were changed to be hardcoded while I try to find a better approach to access the true values.
 This means that values will be the same for both iPhone and iPad.
 
@@ -24,18 +25,7 @@ This means that values will be the same for both iPhone and iPad.
   - Note: SDK 11.0.0 still builds on iOS 12 devices, but ads will not serve.
 - armv7 support has been removed from the SDK
 
-More info can be found [here](https://developers.google.com/admob/ios/migration#migrate_from_v9_to_v10)
-
-### Usage
-
-To use Jc.GoogleMobileAds.iOS, you can add the required packages to your project:
-
-```
-dotnet add package Jc.GMA.iOS
-dotnet add package Jc.UMP.iOS
-```
-
-To use the latest `v11.13.0`, you must add this target to your csproj file to support linking with Swift system libraries
+From `v11.13.0` and beyond, you must add this target to your csproj file to support linking with Swift system libraries
 
 ```xml
 <Target Name="LinkWithSwift" DependsOnTargets="_ParseBundlerArguments;_DetectSdkLocations" BeforeTargets="_LinkNativeExecutable">
@@ -52,4 +42,34 @@ To use the latest `v11.13.0`, you must add this target to your csproj file to su
         <_CustomLinkFlags Include="-Wl,/usr/lib/swift" />
     </ItemGroup>
 </Target>
+```
+
+More info can be found [here](https://developers.google.com/admob/ios/migration#migrate_from_v9_to_v10)
+
+### Usage
+
+To use Jc.GoogleMobileAds.iOS, you can add the required packages to your project:
+
+```
+dotnet add package Jc.GMA.iOS
+dotnet add package Jc.UMP.iOS
+```
+
+Ensure that the `SupportedOSPlatformVersion` attribute in your project file is set to `15.0` or higher:
+
+```xml
+<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+```
+
+along with setting it in the `Info.plist` file:
+
+```xml
+<key>MinimumOSVersion</key>
+<string>15.0</string>
+```
+
+Failing to set the minimum version will result in the compiler warning:
+
+```
+Jc.*.iOS requires a minimum SupportedOSPlatformVersion of 15.0. Update your project to target iOS 15 or later.
 ```

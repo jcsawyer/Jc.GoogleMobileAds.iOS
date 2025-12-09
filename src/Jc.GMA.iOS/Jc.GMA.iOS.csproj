@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-ios;net9.0-ios</TargetFrameworks>
+		<TargetFramework>net10.0-ios</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
 		<IsBindingProject>true</IsBindingProject>
@@ -15,7 +15,8 @@
 		<RepositoryUrl>https://github.com/jcsawyer/Jc.GoogleMobileAds.iOS/tree/main</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<Version>12.7.0-preview100</Version>
+		<Version>12.7.0</Version>
+		<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,8 +24,9 @@
 		<ObjcBindingCoreSource Include="StructsAndEnums.cs" />
 		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
 		<None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
+		<None Include="Jc.GMA.iOS.targets" Pack="true" PackagePath="buildTransitive" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<NativeReference Include="GMA.xcframework">
 			<Kind>Framework</Kind>
