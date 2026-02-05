@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <!-- Make sure SupportedOSPlatformVersion is set somewhere in your library -->
-        <_IosVersionNumber>$([System.Double]::Parse($(SupportedOSPlatformVersion)))</_IosVersionNumber>
+        <_IosVersionNumber>$([System.Double]::Parse($(SupportedOSPlatformVersion, $([System.Globalization.CultureInfo]::InvariantCulture))))</_IosVersionNumber>
     </PropertyGroup>
 
 
