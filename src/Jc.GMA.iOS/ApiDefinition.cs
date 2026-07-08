@@ -1328,8 +1328,8 @@ namespace Google.MobileAds
         [Export("delegate", ArgumentSemantic.Weak)]
         IVideoControllerDelegate Delegate { get; set; }
 
-        // - (void)setMute:(BOOL)mute;
-        [Export("setMute:")]
+        // @property(nonatomic, getter=isMuted) BOOL muted; (setter)
+        [Export("setMuted:")]
         void SetMute(bool mute);
 
         // - (void)play;
@@ -1344,16 +1344,16 @@ namespace Google.MobileAds
         [Export("stop")]
         void Stop();
 
-        // - (BOOL)customControlsEnabled;
-        [Export("customControlsEnabled")]
+        // @property(nonatomic, readonly, getter=areCustomControlsEnabled) BOOL customControlsEnabled;
+        [Export("areCustomControlsEnabled")]
         bool IsCustomControlsEnabled { get; }
 
-        // - (BOOL)clickToExpandEnabled;
-        [Export("clickToExpandEnabled")]
+        // @property(nonatomic, readonly, getter=isClickToExpandEnabled) BOOL clickToExpandEnabled;
+        [Export("isClickToExpandEnabled")]
         bool IsClickToExpandEnabled { get; }
-        
-        // @property(nonatomic, getter=isMuted) BOOL muted;
-        [Export("muted")]
+
+        // @property(nonatomic, getter=isMuted) BOOL muted; (getter)
+        [Export("isMuted")]
         bool IsMuted { get; }
     }
 
