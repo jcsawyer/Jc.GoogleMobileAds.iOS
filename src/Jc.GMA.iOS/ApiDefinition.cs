@@ -997,13 +997,16 @@ namespace Google.MobileAds
         MuteThisAdReason[] MuteThisAdReasons { get; }
 
         // -(void)registerAdView:(UIView * _Nonnull)adView clickableAssetViews:(NSDictionary<GADNativeAssetIdentifier,UIView *> * _Nonnull)clickableAssetViews nonclickableAssetViews:(NSDictionary<GADNativeAssetIdentifier,UIView *> * _Nonnull)nonclickableAssetViews;
+        [Obsolete("This method is no longer supported and will be removed in a future version. Use NativeAdView to render native ads instead.")]
         [Export("registerAdView:clickableAssetViews:nonclickableAssetViews:")]
         void RegisterAdView(UIView adView, NSDictionary<NSString, UIView> nsClickableAssetViews, NSDictionary<NSString, UIView> nsNonclickableAssetViews);
 
+        [Obsolete("This method is no longer supported and will be removed in a future version. Use NativeAdView to render native ads instead.")]
         [Wrap("RegisterAdView (adView, NSDictionary<NSString, UIView>.FromObjectsAndKeys (System.Linq.Enumerable.ToArray (clickableAssetViews.Values), System.Linq.Enumerable.ToArray (clickableAssetViews.Keys), clickableAssetViews.Keys.Count), NSDictionary<NSString, UIView>.FromObjectsAndKeys (System.Linq.Enumerable.ToArray (nonclickableAssetViews.Values), System.Linq.Enumerable.ToArray (nonclickableAssetViews.Keys), nonclickableAssetViews.Keys.Count))")]
         void RegisterAdView(UIView adView, Dictionary<string, UIView> clickableAssetViews, Dictionary<string, UIView> nonclickableAssetViews);
 
         // -(void)unregisterAdView;
+        [Obsolete("This method is no longer supported and will be removed in a future version. Use NativeAdView to render native ads instead.")]
         [Export("unregisterAdView")]
         void UnregisterAdView();
 
