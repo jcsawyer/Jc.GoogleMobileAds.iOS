@@ -12,6 +12,10 @@ Google Mobile Ads SDK iOS Bindings
 Each major version contains breaking changes according to the Google AdMob SDK. Please refer to the [Google AdMob SDK](https://developers.google.com/admob/ios/release-notes) for more information.
 The headline changes relevant will be listed here.
 
+## v12.13.0
+
+Both `NativeAd.RegisterAdView` overloads and `NativeAd.UnregisterAdView` are obsolete, matching the native SDK deprecations. Use `NativeAdView` to render native ads instead. These methods remain available but are no longer supported by Google and will be removed in a future SDK version.
+
 ## v12.2.2
 
 `AdSizeCons` constants were changed to be hardcoded while I try to find a better approach to access the true values.
