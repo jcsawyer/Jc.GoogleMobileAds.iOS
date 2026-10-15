@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>24G325</string>
+	<string>24G419</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -17,13 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>12.14.0</string>
+	<string>13.0.0</string>
 	<key>CFBundleSupportedPlatforms</key>
 	<array>
 		<string>iPhoneOS</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>12140</string>
+	<string>1300</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
@@ -41,7 +41,7 @@
 	<key>DTXcodeBuild</key>
 	<string>16A242d</string>
 	<key>MinimumOSVersion</key>
-	<string>100.0</string>
+	<string>13.0</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2023 Google Inc. All rights reserved.</string>
 	<key>UIDeviceFamily</key>
