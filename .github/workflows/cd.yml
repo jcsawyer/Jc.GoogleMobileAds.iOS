@@ -10,7 +10,7 @@ env:
 jobs:
   build:
     runs-on: macos-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -23,9 +23,17 @@ jobs:
         run: dotnet workload restore
       - name: Build
         run: dotnet build src/jc-google-mobile-ads-ios.sln --configuration Release
-      - name: Test
-        run: dotnet test src/jc-google-mobile-ads-ios.sln --configuration Release --no-build
       - name: Pack
-        run: dotnet pack src/jc-google-mobile-ads-ios.sln --configuration Release --no-build --output .
+        run: dotnet pack src/jc-google-mobile-ads-ios.sln --configuration Release --no-build --output artifacts/smoke-packages
+      - name: NUnit simulator smoke tests
+        run: dotnet test tests/Tests.Google.MobileAds.Host/Tests.Google.MobileAds.Host.csproj --configuration Release --logger trx --results-directory artifacts/dotnet-test
+      - name: Upload simulator results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: binding-smoke-tests
+          path: |
+            artifacts/dotnet-test
+            artifacts/simulator
       - name: Push
-        run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key ${{ secrets.NUGET_APIKEY }}
+        run: dotnet nuget push artifacts/smoke-packages/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key ${{ secrets.NUGET_APIKEY }}

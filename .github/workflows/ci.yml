@@ -25,4 +25,16 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore src/jc-google-mobile-ads-ios.sln
       - name: Build
-        run: dotnet build src/jc-google-mobile-ads-ios.sln --no-restore
+        run: dotnet build src/jc-google-mobile-ads-ios.sln --configuration Release --no-restore
+      - name: Pack
+        run: dotnet pack src/jc-google-mobile-ads-ios.sln --configuration Release --no-build --output artifacts/smoke-packages
+      - name: NUnit simulator smoke tests
+        run: dotnet test tests/Tests.Google.MobileAds.Host/Tests.Google.MobileAds.Host.csproj --configuration Release --logger trx --results-directory artifacts/dotnet-test
+      - name: Upload simulator results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: binding-smoke-tests
+          path: |
+            artifacts/dotnet-test
+            artifacts/simulator
