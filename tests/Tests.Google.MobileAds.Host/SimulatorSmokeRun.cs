@@ -30,7 +30,7 @@ internal sealed class SimulatorSmokeRun(string repository, CancellationToken can
 
         var simulator = await FindSimulatorAsync();
         var app = await BuildAppAsync();
-        // await RunAppAsync(app, simulator);
+        await RunAppAsync(app, simulator);
         AssertPassingResults();
     }
 
