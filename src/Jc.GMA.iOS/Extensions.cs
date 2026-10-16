@@ -34,15 +34,30 @@ namespace Google.MobileAds {
 		[DllImport ("__Internal", EntryPoint = "GADInlineAdaptiveBannerAdSizeWithWidthAndMaxHeight")]
 		public static extern AdSize GetInlineAdaptiveBannerAdSizeWithMaxHeight (nfloat width, nfloat maxHeight);
 
+		/// <summary>Returns a large anchored adaptive banner size. Must be called on the main thread.</summary>
+		[DllImport ("__Internal", EntryPoint = "GADLargeAnchoredAdaptiveBannerAdSizeWithWidth")]
+		public static extern AdSize GetLargeAnchoredAdaptiveBannerAdSize (nfloat width);
+
+		/// <summary>Returns a large anchored adaptive banner size. Must be called on the main thread.</summary>
+		[DllImport ("__Internal", EntryPoint = "GADLargePortraitAnchoredAdaptiveBannerAdSizeWithWidth")]
+		public static extern AdSize GetLargePortraitAnchoredAdaptiveBannerAdSize (nfloat width);
+
+		/// <summary>Returns a large anchored adaptive banner size. Must be called on the main thread.</summary>
+		[DllImport ("__Internal", EntryPoint = "GADLargeLandscapeAnchoredAdaptiveBannerAdSizeWithWidth")]
+		public static extern AdSize GetLargeLandscapeAnchoredAdaptiveBannerAdSize (nfloat width);
+
 		//GAD_EXTERN GADAdSize GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth (CGFloat width);
+		[Obsolete("Use GetLargePortraitAnchoredAdaptiveBannerAdSize instead.")]
 		[DllImport ("__Internal", EntryPoint = "GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth")]
 		public static extern AdSize GetPortraitAnchoredAdaptiveBannerAdSize (nfloat width);
 
 		//GAD_EXTERN GADAdSize GADLandscapeAnchoredAdaptiveBannerAdSizeWithWidth (CGFloat width);
+		[Obsolete("Use GetLargeLandscapeAnchoredAdaptiveBannerAdSize instead.")]
 		[DllImport ("__Internal", EntryPoint = "GADLandscapeAnchoredAdaptiveBannerAdSizeWithWidth")]
 		public static extern AdSize GetLandscapeAnchoredAdaptiveBannerAdSize (nfloat width);
 
 		//GAD_EXTERN GADAdSize GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth (CGFloat width);
+		[Obsolete("Use GetLargeAnchoredAdaptiveBannerAdSize instead.")]
 		[DllImport ("__Internal", EntryPoint = "GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth")]
 		public static extern AdSize GetCurrentOrientationAnchoredAdaptiveBannerAdSize (nfloat width);
 

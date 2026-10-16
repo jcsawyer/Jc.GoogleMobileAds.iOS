@@ -12,6 +12,24 @@ Google Mobile Ads SDK iOS Bindings
 Each major version contains breaking changes according to the Google AdMob SDK. Please refer to the [Google AdMob SDK](https://developers.google.com/admob/ios/release-notes) for more information.
 The headline changes relevant will be listed here.
 
+## v13.0.0
+
+This package binds **Google Mobile Ads SDK 13.0.0**. It continues to support .NET 9/10 and requires iOS 15 or later. Jc.UMP.iOS remains at 2.7.5.
+
+- `NativeAd.RegisterAdView` (both overloads) and `NativeAd.UnregisterAdView` have been removed with the native SDK. Use `NativeAdView` to render native ads.
+- The existing anchored adaptive banner sizing functions are obsolete but retain their original behavior. Use these replacements on the **main thread**:
+
+  | Existing `AdSizeCons` method | Replacement |
+  |---|---|
+  | `GetCurrentOrientationAnchoredAdaptiveBannerAdSize` | `GetLargeAnchoredAdaptiveBannerAdSize` |
+  | `GetPortraitAnchoredAdaptiveBannerAdSize` | `GetLargePortraitAnchoredAdaptiveBannerAdSize` |
+  | `GetLandscapeAnchoredAdaptiveBannerAdSize` | `GetLargeLandscapeAnchoredAdaptiveBannerAdSize` |
+
+- Large anchored adaptive banners can be taller; size the banner container from the returned `AdSize`.
+- `Request.NeighboringContentUrlStrings` remains a `string[]`. The native SDK now raises an exception for non-string array elements; avoid null elements or passing other object types through native interop.
+
+See Google's [v12 to v13 migration guide](https://developers.google.com/admob/ios/migration#migrate_from_sdk_version_v12_to_v13).
+
 ## v12.13.0
 
 Both `NativeAd.RegisterAdView` overloads and `NativeAd.UnregisterAdView` are obsolete, matching the native SDK deprecations. Use `NativeAdView` to render native ads instead. These methods remain available but are no longer supported by Google and will be removed in a future SDK version.
