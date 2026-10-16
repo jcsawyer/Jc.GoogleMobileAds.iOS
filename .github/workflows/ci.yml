@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: ["main"]
 
+permissions:
+  contents: read
+  checks: write
+
 jobs:
   build:
     runs-on: macos-latest
@@ -30,6 +34,18 @@ jobs:
         run: dotnet pack src/jc-google-mobile-ads-ios.sln --configuration Release --no-build --output artifacts/smoke-packages
       - name: NUnit simulator smoke tests
         run: dotnet test tests/Tests.Google.MobileAds.Host/Tests.Google.MobileAds.Host.csproj --configuration Release --logger trx --results-directory artifacts/dotnet-test
+      - name: Publish test results
+        if: ${{ !cancelled() && hashFiles('artifacts/dotnet-test/**/*.trx', 'artifacts/simulator/test-results.xml') != '' }}
+        uses: EnricoMi/publish-unit-test-result-action/macos@v2
+        with:
+          check_name: iOS binding smoke tests
+          comment_mode: 'off'
+          compare_to_earlier_commit: false
+          check_run: ${{ github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+          action_fail: true
+          files: |
+            artifacts/dotnet-test/**/*.trx
+            artifacts/simulator/test-results.xml
       - name: Upload simulator results
         if: always()
         uses: actions/upload-artifact@v4

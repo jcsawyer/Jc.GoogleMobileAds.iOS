@@ -35,7 +35,7 @@ The flow is: **pack bindings → build iOS test app → launch in simulator → 
 - `artifacts/dotnet-test`: desktop TRX results containing one aggregate test for the complete simulator run.
 - `artifacts/simulator/test-results.xml`: NUnit results containing the individual iOS binding cases, also attached to the desktop test result.
 
-CI runs the smoke tests after packaging and uploads both result directories. The release workflow publishes the same packages only after the smoke tests pass.
+CI runs the smoke tests after packaging, publishes the individual iOS cases and aggregate runner result in the job summary and a GitHub check, and uploads both result directories. Fork and Dependabot pull requests receive the job summary without a separate check because their tokens have restricted permissions. The release workflow publishes the same packages only after the smoke tests pass.
 
 See the [smoke-test README](tests/Tests.Google.MobileAds/README.md) for diagnostic options.
 
