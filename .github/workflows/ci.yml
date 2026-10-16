@@ -3,15 +3,22 @@ name: Build
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
-  DOTNET_VERSION: 10.0.x
+  DOTNET_VERSION: 10.0.402
+  # Workload set 10.0.400 installs iOS SDK 26.5.10301, which requires Xcode 26.6.
+  DOTNET_WORKLOAD_VERSION: 10.0.400
+  DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
 
 on:
   pull_request:
     branches: ["main"]
 
+permissions:
+  contents: read
+  checks: write
+
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-26
 
     steps:
       - uses: actions/checkout@v7
@@ -19,10 +26,36 @@ jobs:
         uses: actions/setup-dotnet@v6
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Show Xcode version
+        run: xcodebuild -version
       - name: Restore workloads
         working-directory: src
-        run: dotnet workload restore
+        run: dotnet workload restore --version ${{ env.DOTNET_WORKLOAD_VERSION }}
       - name: Restore dependencies
         run: dotnet restore src/jc-google-mobile-ads-ios.sln
       - name: Build
-        run: dotnet build src/jc-google-mobile-ads-ios.sln --no-restore
+        run: dotnet build src/jc-google-mobile-ads-ios.sln --configuration Release --no-restore
+      - name: Pack
+        run: dotnet pack src/jc-google-mobile-ads-ios.sln --configuration Release --no-build --output artifacts/smoke-packages
+      - name: NUnit simulator smoke tests
+        run: dotnet test tests/Tests.Google.MobileAds.Host/Tests.Google.MobileAds.Host.csproj --configuration Release --logger trx --results-directory artifacts/dotnet-test
+      - name: Publish test results
+        if: ${{ !cancelled() && hashFiles('artifacts/dotnet-test/**/*.trx', 'artifacts/simulator/test-results.xml') != '' }}
+        uses: EnricoMi/publish-unit-test-result-action/macos@v2
+        with:
+          check_name: iOS binding smoke tests
+          comment_mode: 'off'
+          compare_to_earlier_commit: false
+          check_run: ${{ github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+          action_fail: true
+          files: |
+            artifacts/dotnet-test/**/*.trx
+            artifacts/simulator/test-results.xml
+      - name: Upload simulator results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: binding-smoke-tests
+          path: |
+            artifacts/dotnet-test
+            artifacts/simulator
