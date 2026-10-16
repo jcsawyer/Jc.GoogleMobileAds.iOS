@@ -6,9 +6,9 @@ env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
   DOTNET_VERSION: 10.0.402
-  # Workload set 10.0.400 contains the iOS 26.5 SDK; keep Xcode paired with it.
+  # Workload set 10.0.400 installs iOS SDK 26.5.10301, which requires Xcode 26.6.
   DOTNET_WORKLOAD_VERSION: 10.0.400
-  DEVELOPER_DIR: /Applications/Xcode_26.5.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
 
 permissions:
   contents: read
