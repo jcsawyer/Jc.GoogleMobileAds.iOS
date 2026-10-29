@@ -29,10 +29,22 @@ public sealed class BindingTests
     }
 
     [Test]
-    public void UmpSdkVersionIs300()
+    public void UmpSdkVersionIs310()
     {
         Assert.That(global::Google.UserMessagingPlatform.ConsentInformation.UMPVersionString.ToString(),
-            Is.EqualTo("3.0.0"));
+            Is.EqualTo("3.1.0"));
+    }
+
+    [Test]
+    public void ConsentSyncIdRoundTrips()
+    {
+        using var parameters = new global::Google.UserMessagingPlatform.RequestParameters();
+        Assert.That(parameters.ConsentSyncId, Is.Null);
+        var id = Guid.NewGuid().ToString();
+        parameters.ConsentSyncId = id;
+        Assert.That(parameters.ConsentSyncId, Is.EqualTo(id));
+        parameters.ConsentSyncId = null;
+        Assert.That(parameters.ConsentSyncId, Is.Null);
     }
 
     [TestCase("Current")]

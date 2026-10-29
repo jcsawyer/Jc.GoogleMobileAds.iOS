@@ -117,5 +117,9 @@ namespace Google.UserMessagingPlatform
 		// @property (copy, nonatomic) UMPDebugSettings * _Nullable debugSettings;
 		[NullAllowed, Export ("debugSettings", ArgumentSemantic.Copy)]
 		DebugSettings DebugSettings { get; set; }
+
+		// @property (copy, nonatomic) NSString * _Nullable consentSyncID;
+		[NullAllowed, Export ("consentSyncID", ArgumentSemantic.Copy)]
+		string ConsentSyncId { get; set; }
 	}
 }
