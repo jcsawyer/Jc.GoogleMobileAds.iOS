@@ -21,11 +21,11 @@ public sealed class BindingTests
     }
 
     [Test]
-    public void SdkVersionIs1300()
+    public void SdkVersionIs1310()
     {
         var version = global::Google.MobileAds.MobileAds.SharedInstance.VersionNumber;
         Assert.That((version.MajorVersion, version.MinorVersion, version.PatchVersion),
-            Is.EqualTo(((nint)13, (nint)0, (nint)0)));
+            Is.EqualTo(((nint)13, (nint)1, (nint)0)));
     }
 
     [TestCase("Current")]

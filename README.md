@@ -12,6 +12,12 @@ Google Mobile Ads SDK iOS Bindings
 Each major version contains breaking changes according to the Google AdMob SDK. Please refer to the [Google AdMob SDK](https://developers.google.com/admob/ios/release-notes) for more information.
 The headline changes relevant will be listed here.
 
+## v13.1.0
+
+This package binds **Google Mobile Ads SDK 13.1.0**. .NET 9/10 support and the iOS 15 minimum are unchanged. Jc.UMP.iOS remains at 2.7.5.
+
+- `ErrorCode.OSVersionTooLow` is now obsolete, matching the native SDK. There is no replacement; the SDK deployment target already matches the minimum OS version that can receive ads. The enum member remains available with its existing value.
+
 ## v13.0.0
 
 This package binds **Google Mobile Ads SDK 13.0.0**. It continues to support .NET 9/10 and requires iOS 15 or later. Jc.UMP.iOS remains at 2.7.5.
@@ -98,7 +104,7 @@ Jc.*.iOS requires a minimum SupportedOSPlatformVersion of 15.0. Update your proj
 
 # Smoke Tests
 
-The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app references exactly GMA 13.0.0 and UMP 2.7.5 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
+The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app references exactly GMA 13.1.0 and UMP 2.7.5 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
 
 There are two projects:
 

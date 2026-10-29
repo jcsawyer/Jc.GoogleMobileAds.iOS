@@ -88,6 +88,7 @@ namespace Google.MobileAds
         NoFill = 1,
         NetworkError = 2,
         ServerError = 3,
+        [Obsolete("Deprecated. No replacement.")]
         OSVersionTooLow = 4,
         Timeout = 5,
         MediationDataError = 7,
