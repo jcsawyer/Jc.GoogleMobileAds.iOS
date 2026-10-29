@@ -28,6 +28,13 @@ public sealed class BindingTests
             Is.EqualTo(((nint)13, (nint)1, (nint)0)));
     }
 
+    [Test]
+    public void UmpSdkVersionIs300()
+    {
+        Assert.That(global::Google.UserMessagingPlatform.ConsentInformation.UMPVersionString.ToString(),
+            Is.EqualTo("3.0.0"));
+    }
+
     [TestCase("Current")]
     [TestCase("Portrait")]
     [TestCase("Landscape")]

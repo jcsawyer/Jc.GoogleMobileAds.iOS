@@ -23,7 +23,7 @@ internal sealed class SimulatorSmokeRun(string repository, CancellationToken can
         Directory.CreateDirectory(ResultsDirectory);
 
         var feed = Path.Combine(repository, "artifacts", "smoke-packages");
-        foreach (var package in new[] { "Jc.GMA.iOS.13.1.0.nupkg", "Jc.UMP.iOS.2.7.5.nupkg" })
+        foreach (var package in new[] { "Jc.GMA.iOS.13.1.0.nupkg", "Jc.UMP.iOS.3.0.0.nupkg" })
         {
             Assert.That(File.Exists(Path.Combine(feed, package)), Is.True, $"Pack {package} into {feed} first.");
         }
