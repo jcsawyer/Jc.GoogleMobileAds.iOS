@@ -12,6 +12,15 @@ Google Mobile Ads SDK iOS Bindings
 Each major version contains breaking changes according to the Google AdMob SDK. Please refer to the [Google AdMob SDK](https://developers.google.com/admob/ios/release-notes) for more information.
 The headline changes relevant will be listed here.
 
+## UMP v3.0.0
+
+Jc.UMP.iOS now binds **Google User Messaging Platform SDK 3.0.0**, upgrading from native SDK 2.7.0 (package 2.7.5). .NET 9/10 support and the iOS 15 minimum are unchanged. Building requires Xcode 16 or later.
+
+- UMP 3.0 changed Swift API names; the Objective-C selectors and existing C# names are unchanged.
+- The native SDK adds internal support for Firebase consent APIs when consent mode is configured through Privacy & messaging.
+
+See Google's [UMP release notes](https://developers.google.com/admob/ios/privacy/download).
+
 ## v13.1.0
 
 This package binds **Google Mobile Ads SDK 13.1.0**. .NET 9/10 support and the iOS 15 minimum are unchanged. Jc.UMP.iOS remains at 2.7.5.
@@ -104,14 +113,14 @@ Jc.*.iOS requires a minimum SupportedOSPlatformVersion of 15.0. Update your proj
 
 # Smoke Tests
 
-The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app references exactly GMA 13.1.0 and UMP 2.7.5 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
+The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app references exactly GMA 13.1.0 and UMP 3.0.0 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
 
 There are two projects:
 
 - `tests/Tests.Google.MobileAds`: an iOS app that runs the binding tests using NUnitLite on UIKit's main thread.
 - `tests/Tests.Google.MobileAds.Host`: a desktop NUnit project that provides the `dotnet test` entry point. It builds the app, installs and launches it with Apple's `simctl`, collects the results, and checks that the run passed. The binding tests themselves run in the simulator.
 
-The nine iOS cases check the native SDK version, all three new large adaptive banner sizing functions, all three deprecated sizing functions, neighboring-content URL array marshalling, and removal of the native-ad registration methods. The app uses Google's sample application ID and makes no live ad requests. An additional intentional failure probe is skipped during normal runs.
+The ten iOS cases check the native GMA and UMP SDK versions, all three new large adaptive banner sizing functions, all three deprecated sizing functions, neighboring-content URL array marshalling, and removal of the native-ad registration methods. The app uses Google's sample application ID and makes no live ad requests. An additional intentional failure probe is skipped during normal runs.
 
 ## Run locally
 

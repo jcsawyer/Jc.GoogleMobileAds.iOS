@@ -11,7 +11,7 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Jc.GMA.iOS" Version="[13.1.0]"/>
-        <PackageReference Include="Jc.UMP.iOS" Version="[2.7.5]"/>
+        <PackageReference Include="Jc.UMP.iOS" Version="[3.0.0]"/>
         <PackageReference Include="NUnitLite" Version="[5.0.0]"/>
         <TrimmerRootAssembly Include="$(AssemblyName)"/>
     </ItemGroup>
