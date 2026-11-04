@@ -73,6 +73,12 @@ namespace Google.MobileAds
         [Export("startWithCompletionHandler:")]
         void Start([NullAllowed] InitializationCompletionHandler completionHandler);
 
+        /// <summary>Beta: starts the SDK with a mediation adapter initialization configuration.</summary>
+        [Async]
+        [Export("startWithMediationInitializationConfiguration:completionHandler:")]
+        void Start([NullAllowed] MediationInitializationConfiguration configuration,
+            [NullAllowed] InitializationCompletionHandler completionHandler);
+
         // -(void)disableSDKCrashReporting;
         [Export("disableSDKCrashReporting")]
         void DisableSdkCrashReporting();
@@ -88,6 +94,201 @@ namespace Google.MobileAds
         // - (void)registerWebView:(nonnull WKWebView *)webView;
         [Export("registerWebView:")]
         void RegisterWebView(WKWebView webView);
+    }
+
+
+    /// <summary>Beta configuration for mediation adapter initialization.</summary>
+    [BaseType(typeof(NSObject), Name = "GADMediationInitializationConfiguration")]
+    interface MediationInitializationConfiguration
+    {
+        [Export("includedAdFormats", ArgumentSemantic.Copy)]
+        NSSet<NSNumber> IncludedAdFormats { get; set; }
+
+        [Export("includedAdUnitIDs", ArgumentSemantic.Copy)]
+        NSSet<NSString> IncludedAdUnitIDs { get; set; }
+
+        [Export("includedAdapterClasses", ArgumentSemantic.Copy)]
+        NSSet<NSString> IncludedAdapterClasses { get; set; }
+
+        [Export("excludedAdapterClasses", ArgumentSemantic.Copy)]
+        NSSet<NSString> ExcludedAdapterClasses { get; set; }
+
+        [Export("initializationTimeout")]
+        double InitializationTimeout { get; set; }
+    }
+
+    /// <summary>Beta configuration for preloading ads.</summary>
+    [DisableDefaultCtor]
+    [BaseType(typeof(NSObject), Name = "GADPreloadConfigurationV2")]
+    interface PreloadConfigurationV2 : INSCopying
+    {
+        [Export("initWithAdUnitID:request:")]
+        NativeHandle Constructor(string adUnitId, Request request);
+
+        [Export("initWithAdUnitID:")]
+        NativeHandle Constructor(string adUnitId);
+
+        [Export("adUnitID")]
+        string AdUnitID { get; }
+
+        [Export("request")]
+        Request Request { get; }
+
+        [Export("bufferSize")]
+        nuint BufferSize { get; set; }
+    }
+
+    interface IPreloadDelegate { }
+
+    /// <summary>Beta delegate for ad preloading events.</summary>
+    [Protocol, Model]
+    [BaseType(typeof(NSObject), Name = "GADPreloadDelegate")]
+    interface PreloadDelegate
+    {
+        [Abstract, Export("adAvailableForPreloadID:responseInfo:")]
+        void AdAvailable(string preloadId, ResponseInfo responseInfo);
+
+        [Abstract, Export("adsExhaustedForPreloadID:")]
+        void AdsExhausted(string preloadId);
+
+        [Abstract, Export("adFailedToPreloadForPreloadID:error:")]
+        void AdFailedToPreload(string preloadId, NSError error);
+    }
+
+    /// <summary>Beta preloader for AppOpenAd.</summary>
+    [BaseType(typeof(NSObject), Name = "GADAppOpenAdPreloader")]
+    interface AppOpenAdPreloader
+    {
+        [Static, Export("sharedInstance")]
+        AppOpenAdPreloader SharedInstance { get; }
+
+        [Export("preloadForPreloadID:configuration:delegate:")]
+        bool Preload(string preloadId, PreloadConfigurationV2 configuration, [NullAllowed] IPreloadDelegate preloadDelegate);
+
+        [Export("isAdAvailableWithPreloadID:")]
+        bool IsAdAvailable(string preloadId);
+
+        [return: NullAllowed]
+        [Export("adWithPreloadID:")]
+        AppOpenAd GetAd(string preloadId);
+
+        [Export("numberOfAdsAvailableWithPreloadID:")]
+        nuint GetNumberOfAdsAvailable(string preloadId);
+
+        [Export("stopPreloadingAndRemoveAdsForPreloadID:")]
+        void StopPreloadingAndRemoveAds(string preloadId);
+
+        [Export("stopPreloadingAndRemoveAllAds")]
+        void StopPreloadingAndRemoveAllAds();
+
+        [return: NullAllowed]
+        [Export("configurationWithPreloadID:")]
+        PreloadConfigurationV2 GetConfiguration(string preloadId);
+
+        [Export("configurations")]
+        NSDictionary<NSString, PreloadConfigurationV2> Configurations { get; }
+    }
+
+    /// <summary>Beta preloader for InterstitialAd.</summary>
+    [BaseType(typeof(NSObject), Name = "GADInterstitialAdPreloader")]
+    interface InterstitialAdPreloader
+    {
+        [Static, Export("sharedInstance")]
+        InterstitialAdPreloader SharedInstance { get; }
+
+        [Export("preloadForPreloadID:configuration:delegate:")]
+        bool Preload(string preloadId, PreloadConfigurationV2 configuration, [NullAllowed] IPreloadDelegate preloadDelegate);
+
+        [Export("isAdAvailableWithPreloadID:")]
+        bool IsAdAvailable(string preloadId);
+
+        [return: NullAllowed]
+        [Export("adWithPreloadID:")]
+        InterstitialAd GetAd(string preloadId);
+
+        [Export("numberOfAdsAvailableWithPreloadID:")]
+        nuint GetNumberOfAdsAvailable(string preloadId);
+
+        [Export("stopPreloadingAndRemoveAdsForPreloadID:")]
+        void StopPreloadingAndRemoveAds(string preloadId);
+
+        [Export("stopPreloadingAndRemoveAllAds")]
+        void StopPreloadingAndRemoveAllAds();
+
+        [return: NullAllowed]
+        [Export("configurationWithPreloadID:")]
+        PreloadConfigurationV2 GetConfiguration(string preloadId);
+
+        [Export("configurations")]
+        NSDictionary<NSString, PreloadConfigurationV2> Configurations { get; }
+    }
+
+    /// <summary>Beta preloader for RewardedAd.</summary>
+    [BaseType(typeof(NSObject), Name = "GADRewardedAdPreloader")]
+    interface RewardedAdPreloader
+    {
+        [Static, Export("sharedInstance")]
+        RewardedAdPreloader SharedInstance { get; }
+
+        [Export("preloadForPreloadID:configuration:delegate:")]
+        bool Preload(string preloadId, PreloadConfigurationV2 configuration, [NullAllowed] IPreloadDelegate preloadDelegate);
+
+        [Export("isAdAvailableWithPreloadID:")]
+        bool IsAdAvailable(string preloadId);
+
+        [return: NullAllowed]
+        [Export("adWithPreloadID:")]
+        RewardedAd GetAd(string preloadId);
+
+        [Export("numberOfAdsAvailableWithPreloadID:")]
+        nuint GetNumberOfAdsAvailable(string preloadId);
+
+        [Export("stopPreloadingAndRemoveAdsForPreloadID:")]
+        void StopPreloadingAndRemoveAds(string preloadId);
+
+        [Export("stopPreloadingAndRemoveAllAds")]
+        void StopPreloadingAndRemoveAllAds();
+
+        [return: NullAllowed]
+        [Export("configurationWithPreloadID:")]
+        PreloadConfigurationV2 GetConfiguration(string preloadId);
+
+        [Export("configurations")]
+        NSDictionary<NSString, PreloadConfigurationV2> Configurations { get; }
+    }
+
+    /// <summary>Beta preloader for RewardedInterstitialAd.</summary>
+    [BaseType(typeof(NSObject), Name = "GADRewardedInterstitialAdPreloader")]
+    interface RewardedInterstitialAdPreloader
+    {
+        [Static, Export("sharedInstance")]
+        RewardedInterstitialAdPreloader SharedInstance { get; }
+
+        [Export("preloadForPreloadID:configuration:delegate:")]
+        bool Preload(string preloadId, PreloadConfigurationV2 configuration, [NullAllowed] IPreloadDelegate preloadDelegate);
+
+        [Export("isAdAvailableWithPreloadID:")]
+        bool IsAdAvailable(string preloadId);
+
+        [return: NullAllowed]
+        [Export("adWithPreloadID:")]
+        RewardedInterstitialAd GetAd(string preloadId);
+
+        [Export("numberOfAdsAvailableWithPreloadID:")]
+        nuint GetNumberOfAdsAvailable(string preloadId);
+
+        [Export("stopPreloadingAndRemoveAdsForPreloadID:")]
+        void StopPreloadingAndRemoveAds(string preloadId);
+
+        [Export("stopPreloadingAndRemoveAllAds")]
+        void StopPreloadingAndRemoveAllAds();
+
+        [return: NullAllowed]
+        [Export("configurationWithPreloadID:")]
+        PreloadConfigurationV2 GetConfiguration(string preloadId);
+
+        [Export("configurations")]
+        NSDictionary<NSString, PreloadConfigurationV2> Configurations { get; }
     }
 
     // @interface GADMultipleAdsAdLoaderOptions : GADAdLoaderOptions
@@ -445,6 +646,10 @@ namespace Google.MobileAds
         [NullAllowed, Export("testDeviceIdentifiers", ArgumentSemantic.Copy)]
         string[] TestDeviceIdentifiers { get; set; }
 
+        // @property(nonatomic) GADAgeRestrictedTreatment ageRestrictedTreatment;
+        [Export("ageRestrictedTreatment", ArgumentSemantic.Assign)]
+        AgeRestrictedTreatment AgeRestrictedTreatment { get; set; }
+
         // @property(nonatomic, nullable, copy) NSNumber *tagForUnderAgeOfConsent;
         /// <summary>
         /// <para>
@@ -465,6 +670,7 @@ namespace Google.MobileAds
         /// </para>
         /// </summary>
         [NullAllowed]
+        [Obsolete("Use the AgeRestrictedTreatment property instead.")]
         [Export("tagForUnderAgeOfConsent", ArgumentSemantic.Copy)]
         NSNumber TagForUnderAgeOfConsent { get; set; }
         
@@ -494,16 +700,17 @@ namespace Google.MobileAds
         /// </para>
         /// </summary>
         [NullAllowed]
+        [Obsolete("Use the AgeRestrictedTreatment property instead.")]
         [Export("tagForChildDirectedTreatment", ArgumentSemantic.Copy)]
         NSNumber TagForChildDirectedTreatment { get; set; }
 
         // -(void)tagForUnderAgeOfConsent:(BOOL)underAgeOfConsent;
-        [Obsolete("This method is deprecated. Use the TagForUnderAgeOfConsent property instead.")]
+        [Obsolete("This method is deprecated. Use the AgeRestrictedTreatment property instead.")]
         [Export("tagForUnderAgeOfConsent:")]
         void UnderAgeofConsent(bool underAgeOfConsent);
 
         // -(void)tagForChildDirectedTreatment:(BOOL)childDirectedTreatment;
-        [Obsolete("This method is deprecated. Use the TagForChildDirectedTreatment property instead.")]
+        [Obsolete("This method is deprecated. Use the AgeRestrictedTreatment property instead.")]
         [Export("tagForChildDirectedTreatment:")]
         void ChildDirectedTreatment(bool childDirectedTreatment);
 
