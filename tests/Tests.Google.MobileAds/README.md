@@ -10,7 +10,7 @@ dotnet test tests/Tests.Google.MobileAds.Host/Tests.Google.MobileAds.Host.csproj
 ```
 
 The C# host restores the iOS test app into an empty temporary NuGet cache, builds it, and uses Apple's `simctl` to
-install and launch it. GMA 13.1.0 and UMP 3.1.0 are exact-version package references mapped exclusively to the local
+install and launch it. GMA 13.2.0 and UMP 3.1.0 are exact-version package references mapped exclusively to the local
 feed. Clean the binding projects before packing after replacing native frameworks locally.
 
 Inside the app, NUnitLite runs eleven cases on UIKit's main thread: GMA and UMP SDK versions, consent sync ID

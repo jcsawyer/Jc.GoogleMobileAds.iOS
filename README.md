@@ -29,6 +29,12 @@ Jc.UMP.iOS now binds **Google User Messaging Platform SDK 3.0.0**, upgrading fro
 
 See Google's [UMP release notes](https://developers.google.com/admob/ios/privacy/download).
 
+## v13.2.0
+
+This package binds **Google Mobile Ads SDK 13.2.0**, upgrading from SDK 13.1.0. This release includes native bug fixes and performance improvements; the public headers are unchanged. .NET 9/10 support and the iOS 15 minimum are unchanged. Jc.UMP.iOS remains at 3.1.0.
+
+See Google's [GMA release notes](https://developers.google.com/admob/ios/rel-notes).
+
 ## v13.1.0
 
 This package binds **Google Mobile Ads SDK 13.1.0**. .NET 9/10 support and the iOS 15 minimum are unchanged. Jc.UMP.iOS remains at 2.7.5.
@@ -121,7 +127,7 @@ Jc.*.iOS requires a minimum SupportedOSPlatformVersion of 15.0. Update your proj
 
 # Smoke Tests
 
-The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app references exactly GMA 13.1.0 and UMP 3.1.0 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
+The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app references exactly GMA 13.2.0 and UMP 3.1.0 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
 
 There are two projects:
 
