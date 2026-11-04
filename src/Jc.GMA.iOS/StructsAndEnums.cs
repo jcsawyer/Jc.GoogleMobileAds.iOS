@@ -35,6 +35,14 @@ namespace Google.MobileAds
     }
 
     [Native]
+    public enum AgeRestrictedTreatment : long
+    {
+        Unspecified = 0,
+        Child = 1,
+        Teen = 2,
+    }
+
+    [Native]
     public enum PublisherPrivacyPersonalizationState : long
     {
         /// <summary>

@@ -21,11 +21,121 @@ public sealed class BindingTests
     }
 
     [Test]
-    public void SdkVersionIs1320()
+    public void SdkVersionIs1330()
     {
         var version = global::Google.MobileAds.MobileAds.SharedInstance.VersionNumber;
         Assert.That((version.MajorVersion, version.MinorVersion, version.PatchVersion),
-            Is.EqualTo(((nint)13, (nint)2, (nint)0)));
+            Is.EqualTo(((nint)13, (nint)3, (nint)0)));
+    }
+
+    [TestCase(AgeRestrictedTreatment.Unspecified)]
+    [TestCase(AgeRestrictedTreatment.Child)]
+    [TestCase(AgeRestrictedTreatment.Teen)]
+    public void AgeRestrictedTreatmentRoundTrips(AgeRestrictedTreatment treatment)
+    {
+        var configuration = global::Google.MobileAds.MobileAds.SharedInstance.RequestConfiguration;
+        var original = configuration.AgeRestrictedTreatment;
+        try
+        {
+            configuration.AgeRestrictedTreatment = treatment;
+            Assert.That(configuration.AgeRestrictedTreatment, Is.EqualTo(treatment));
+        }
+        finally
+        {
+            configuration.AgeRestrictedTreatment = original;
+        }
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public void PreloadConfigurationRoundTrips(bool explicitRequest)
+    {
+        const string adUnitId = "ca-app-pub-3940256099942544/4411468910";
+        using var request = Request.GetDefaultRequest();
+        request.NeighboringContentUrlStrings = ["https://example.com/preload"];
+        using var configuration = explicitRequest
+            ? new PreloadConfigurationV2(adUnitId, request)
+            : new PreloadConfigurationV2(adUnitId);
+        Assert.That(configuration.AdUnitID, Is.EqualTo(adUnitId));
+        Assert.That(configuration.Request, Is.Not.Null);
+        if (explicitRequest)
+        {
+            Assert.That(configuration.Request.NeighboringContentUrlStrings,
+                Is.EqualTo(request.NeighboringContentUrlStrings));
+        }
+        configuration.BufferSize = 2;
+        Assert.That(configuration.BufferSize, Is.EqualTo((nuint)2));
+    }
+
+    [Test]
+    public void MediationInitializationConfigurationRoundTrips()
+    {
+        using var configuration = new MediationInitializationConfiguration();
+        using var format = NSNumber.FromInt64((long)AdFormat.Interstitial);
+        using var formats = new NSSet<NSNumber>(format);
+        using var adUnit = new NSString("ca-app-pub-3940256099942544/4411468910");
+        using var adUnits = new NSSet<NSString>(adUnit);
+        using var adapter = new NSString("ExampleAdapter");
+        using var adapters = new NSSet<NSString>(adapter);
+        configuration.IncludedAdFormats = formats;
+        configuration.IncludedAdUnitIDs = adUnits;
+        configuration.IncludedAdapterClasses = adapters;
+        configuration.ExcludedAdapterClasses = adapters;
+        configuration.InitializationTimeout = 5;
+        Assert.That(configuration.IncludedAdFormats.Contains(format), Is.True);
+        Assert.That(configuration.IncludedAdUnitIDs.Contains(adUnit), Is.True);
+        Assert.That(configuration.IncludedAdapterClasses.Contains(adapter), Is.True);
+        Assert.That(configuration.ExcludedAdapterClasses.Contains(adapter), Is.True);
+        Assert.That(configuration.InitializationTimeout, Is.EqualTo(5));
+        Assert.That(global::Google.MobileAds.MobileAds.SharedInstance.RespondsToSelector(
+            new ObjCRuntime.Selector("startWithMediationInitializationConfiguration:completionHandler:")), Is.True);
+    }
+
+    [TestCase("AppOpen")]
+    [TestCase("Interstitial")]
+    [TestCase("Rewarded")]
+    [TestCase("RewardedInterstitial")]
+    public void PreloaderHasNoAdsForUnknownId(string format)
+    {
+        var id = Guid.NewGuid().ToString();
+        switch (format)
+        {
+            case "AppOpen":
+                var appOpen = AppOpenAdPreloader.SharedInstance;
+                AssertEmptyPreloader(appOpen, appOpen.IsAdAvailable(id), appOpen.GetNumberOfAdsAvailable(id),
+                    appOpen.GetAd(id), appOpen.GetConfiguration(id), appOpen.Configurations.ContainsKey(new NSString(id)));
+                break;
+            case "Interstitial":
+                var interstitial = InterstitialAdPreloader.SharedInstance;
+                AssertEmptyPreloader(interstitial, interstitial.IsAdAvailable(id), interstitial.GetNumberOfAdsAvailable(id),
+                    interstitial.GetAd(id), interstitial.GetConfiguration(id), interstitial.Configurations.ContainsKey(new NSString(id)));
+                break;
+            case "Rewarded":
+                var rewarded = RewardedAdPreloader.SharedInstance;
+                AssertEmptyPreloader(rewarded, rewarded.IsAdAvailable(id), rewarded.GetNumberOfAdsAvailable(id),
+                    rewarded.GetAd(id), rewarded.GetConfiguration(id), rewarded.Configurations.ContainsKey(new NSString(id)));
+                break;
+            case "RewardedInterstitial":
+                var rewardedInterstitial = RewardedInterstitialAdPreloader.SharedInstance;
+                AssertEmptyPreloader(rewardedInterstitial, rewardedInterstitial.IsAdAvailable(id), rewardedInterstitial.GetNumberOfAdsAvailable(id),
+                    rewardedInterstitial.GetAd(id), rewardedInterstitial.GetConfiguration(id), rewardedInterstitial.Configurations.ContainsKey(new NSString(id)));
+                break;
+        }
+    }
+
+    private static void AssertEmptyPreloader(NSObject preloader, bool available, nuint count,
+        NSObject? ad, PreloadConfigurationV2? configuration, bool configured)
+    {
+        Assert.That(available, Is.False);
+        Assert.That(count, Is.EqualTo((nuint)0));
+        Assert.That(ad, Is.Null);
+        Assert.That(configuration, Is.Null);
+        Assert.That(configured, Is.False);
+        foreach (var selector in new[] { "preloadForPreloadID:configuration:delegate:",
+                     "stopPreloadingAndRemoveAdsForPreloadID:", "stopPreloadingAndRemoveAllAds" })
+        {
+            Assert.That(preloader.RespondsToSelector(new ObjCRuntime.Selector(selector)), Is.True, selector);
+        }
     }
 
     [Test]
