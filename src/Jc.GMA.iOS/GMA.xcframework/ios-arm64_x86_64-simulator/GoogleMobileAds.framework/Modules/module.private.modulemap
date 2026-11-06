@@ -1,3 +1,11 @@
 framework module GoogleMobileAds_Private {
-    header "GoogleMobileAds_Beta.h"
+  header "GADAppOpenAdPreloader_Beta.h"
+  header "GADInterstitialAdPreloader_Beta.h"
+  header "GADMobileAds_Beta.h"
+  header "GADPreloadConfigurationV2_Beta.h"
+  header "GADPreloadDelegate_Beta.h"
+  header "GADRequest_Beta.h"
+  header "GADRewardedAdPreloader_Beta.h"
+  header "GADRewardedInterstitialAdPreloader_Beta.h"
+  header "Mediation/GADMediationInitializationConfiguration_Beta.h"
 }

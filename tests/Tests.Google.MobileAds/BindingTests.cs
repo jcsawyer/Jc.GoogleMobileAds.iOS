@@ -21,11 +21,22 @@ public sealed class BindingTests
     }
 
     [Test]
-    public void SdkVersionIs1330()
+    public void SdkVersionIs1340()
     {
         var version = global::Google.MobileAds.MobileAds.SharedInstance.VersionNumber;
         Assert.That((version.MajorVersion, version.MinorVersion, version.PatchVersion),
-            Is.EqualTo(((nint)13, (nint)3, (nint)0)));
+            Is.EqualTo(((nint)13, (nint)4, (nint)0)));
+    }
+
+    [Test]
+    public void SkipUninitializedAdaptersRoundTrips()
+    {
+        using var request = Request.GetDefaultRequest();
+        Assert.That(request.ShouldSkipUninitializedAdapters, Is.False);
+        request.ShouldSkipUninitializedAdapters = true;
+        Assert.That(request.ShouldSkipUninitializedAdapters, Is.True);
+        request.ShouldSkipUninitializedAdapters = false;
+        Assert.That(request.ShouldSkipUninitializedAdapters, Is.False);
     }
 
     [TestCase(AgeRestrictedTreatment.Unspecified)]
