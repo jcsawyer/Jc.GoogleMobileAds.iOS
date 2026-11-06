@@ -21,11 +21,11 @@ public sealed class BindingTests
     }
 
     [Test]
-    public void SdkVersionIs1340()
+    public void SdkVersionIs1350()
     {
         var version = global::Google.MobileAds.MobileAds.SharedInstance.VersionNumber;
         Assert.That((version.MajorVersion, version.MinorVersion, version.PatchVersion),
-            Is.EqualTo(((nint)13, (nint)4, (nint)0)));
+            Is.EqualTo(((nint)13, (nint)5, (nint)0)));
     }
 
     [Test]
@@ -114,32 +114,33 @@ public sealed class BindingTests
             case "AppOpen":
                 var appOpen = AppOpenAdPreloader.SharedInstance;
                 AssertEmptyPreloader(appOpen, appOpen.IsAdAvailable(id), appOpen.GetNumberOfAdsAvailable(id),
-                    appOpen.GetAd(id), appOpen.GetConfiguration(id), appOpen.Configurations.ContainsKey(new NSString(id)));
+                    appOpen.GetAd(id), appOpen.GetAdResponseInfo(id), appOpen.GetConfiguration(id), appOpen.Configurations.ContainsKey(new NSString(id)));
                 break;
             case "Interstitial":
                 var interstitial = InterstitialAdPreloader.SharedInstance;
                 AssertEmptyPreloader(interstitial, interstitial.IsAdAvailable(id), interstitial.GetNumberOfAdsAvailable(id),
-                    interstitial.GetAd(id), interstitial.GetConfiguration(id), interstitial.Configurations.ContainsKey(new NSString(id)));
+                    interstitial.GetAd(id), interstitial.GetAdResponseInfo(id), interstitial.GetConfiguration(id), interstitial.Configurations.ContainsKey(new NSString(id)));
                 break;
             case "Rewarded":
                 var rewarded = RewardedAdPreloader.SharedInstance;
                 AssertEmptyPreloader(rewarded, rewarded.IsAdAvailable(id), rewarded.GetNumberOfAdsAvailable(id),
-                    rewarded.GetAd(id), rewarded.GetConfiguration(id), rewarded.Configurations.ContainsKey(new NSString(id)));
+                    rewarded.GetAd(id), rewarded.GetAdResponseInfo(id), rewarded.GetConfiguration(id), rewarded.Configurations.ContainsKey(new NSString(id)));
                 break;
             case "RewardedInterstitial":
                 var rewardedInterstitial = RewardedInterstitialAdPreloader.SharedInstance;
                 AssertEmptyPreloader(rewardedInterstitial, rewardedInterstitial.IsAdAvailable(id), rewardedInterstitial.GetNumberOfAdsAvailable(id),
-                    rewardedInterstitial.GetAd(id), rewardedInterstitial.GetConfiguration(id), rewardedInterstitial.Configurations.ContainsKey(new NSString(id)));
+                    rewardedInterstitial.GetAd(id), rewardedInterstitial.GetAdResponseInfo(id), rewardedInterstitial.GetConfiguration(id), rewardedInterstitial.Configurations.ContainsKey(new NSString(id)));
                 break;
         }
     }
 
     private static void AssertEmptyPreloader(NSObject preloader, bool available, nuint count,
-        NSObject? ad, PreloadConfigurationV2? configuration, bool configured)
+        NSObject? ad, ResponseInfo? responseInfo, PreloadConfigurationV2? configuration, bool configured)
     {
         Assert.That(available, Is.False);
         Assert.That(count, Is.EqualTo((nuint)0));
         Assert.That(ad, Is.Null);
+        Assert.That(responseInfo, Is.Null);
         Assert.That(configuration, Is.Null);
         Assert.That(configured, Is.False);
         foreach (var selector in new[] { "preloadForPreloadID:configuration:delegate:",
@@ -147,6 +148,25 @@ public sealed class BindingTests
         {
             Assert.That(preloader.RespondsToSelector(new ObjCRuntime.Selector(selector)), Is.True, selector);
         }
+    }
+
+    [Test]
+    public void SwipeableInterstitialOptionsRoundTrip()
+    {
+        using var options = new SwipeableInterstitialAdOptions();
+        Assert.That(options.MaxScreenHoldDuration, Is.EqualTo(0));
+        Assert.That(options.CustomClickSwipeGestureTapsAllowed, Is.True);
+        options.MaxScreenHoldDuration = 5;
+        options.AdSize = new CoreGraphics.CGSize(320, 480);
+        Assert.That(options.MaxScreenHoldDuration, Is.EqualTo(5));
+        Assert.That(options.AdSize, Is.EqualTo(new CoreGraphics.CGSize(320, 480)));
+        options.EnableCustomClickSwipeGesture(UIKit.UISwipeGestureRecognizerDirection.Up, false);
+        Assert.That(options.CustomClickSwipeGestureDirection, Is.EqualTo(UIKit.UISwipeGestureRecognizerDirection.Up));
+        Assert.That(options.CustomClickSwipeGestureTapsAllowed, Is.False);
+        options.EnableCustomClickSwipeGesture(UIKit.UISwipeGestureRecognizerDirection.Down, true);
+        Assert.That(options.CustomClickSwipeGestureDirection, Is.EqualTo(UIKit.UISwipeGestureRecognizerDirection.Down));
+        Assert.That(options.CustomClickSwipeGestureTapsAllowed, Is.True);
+        Assert.That(ObjCRuntime.Class.GetHandle("GADSwipeableInterstitialAd"), Is.Not.EqualTo(IntPtr.Zero));
     }
 
     [Test]
