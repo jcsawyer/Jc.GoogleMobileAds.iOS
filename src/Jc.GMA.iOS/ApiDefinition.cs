@@ -611,6 +611,10 @@ namespace Google.MobileAds
         [NullAllowed]
         [Export("customTargeting", ArgumentSemantic.Copy)]
         NSDictionary<NSString, NSObject> CustomTargeting { get; set; }
+
+        /// <summary>Beta: skips adapters that have not been initialized. Defaults to false.</summary>
+        [Export("shouldSkipUninitializedAdapters", ArgumentSemantic.Assign)]
+        bool ShouldSkipUninitializedAdapters { get; set; }
     }
 
     [Static]

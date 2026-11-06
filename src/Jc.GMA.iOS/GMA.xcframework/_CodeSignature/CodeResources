@@ -6,7 +6,7 @@
 	<dict>
 		<key>ios-arm64/GoogleMobileAds.framework/GoogleMobileAds</key>
 		<data>
-		zK5Dn2nvAFZeEtdMPcb+hktCYe8=
+		O1Kd6RL1QzpSwiqgRAI3uUC5XbU=
 		</data>
 		<key>ios-arm64/GoogleMobileAds.framework/Headers/GADAdChoicesPosition.h</key>
 		<data>
@@ -258,11 +258,15 @@
 		</data>
 		<key>ios-arm64/GoogleMobileAds.framework/Headers/GADRequestConfiguration.h</key>
 		<data>
-		rQPuFSef09FKOJmKtbZkJIao7PY=
+		OWAs93m54luncX6qVyc/gC5dKs0=
 		</data>
 		<key>ios-arm64/GoogleMobileAds.framework/Headers/GADRequestError.h</key>
 		<data>
 		sT9HROeDriDuTk6OBMvU6tKlcHk=
+		</data>
+		<key>ios-arm64/GoogleMobileAds.framework/Headers/GADRequest_Beta.h</key>
+		<data>
+		xSc+8LNsZUL/Y0Vlocp66ErWx4o=
 		</data>
 		<key>ios-arm64/GoogleMobileAds.framework/Headers/GADResponseInfo.h</key>
 		<data>
@@ -326,7 +330,7 @@
 		</data>
 		<key>ios-arm64/GoogleMobileAds.framework/Headers/GoogleMobileAds_Beta.h</key>
 		<data>
-		z8q39wUo9R/xbFBON6huYj4+ryo=
+		rrJSfgzxbOMfjL2/h9Kp+RzQdMI=
 		</data>
 		<key>ios-arm64/GoogleMobileAds.framework/Headers/Mediation/GADMAdNetworkAdapterProtocol.h</key>
 		<data>
@@ -446,7 +450,7 @@
 		</data>
 		<key>ios-arm64/GoogleMobileAds.framework/Info.plist</key>
 		<data>
-		+N/Kr2QHmx4J9Tcc8+alpaQp8as=
+		DkuJW8By3R1VknmFSMcPyRRimUU=
 		</data>
 		<key>ios-arm64/GoogleMobileAds.framework/Modules/module.modulemap</key>
 		<data>
@@ -454,7 +458,7 @@
 		</data>
 		<key>ios-arm64/GoogleMobileAds.framework/Modules/module.private.modulemap</key>
 		<data>
-		OKs4tjJzgTRC9U1kG0HCuDqby2k=
+		/NwjiBGrYBhPu/LSxQC3Vu93pj8=
 		</data>
 		<key>ios-arm64/GoogleMobileAds.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -462,7 +466,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/GoogleMobileAds</key>
 		<data>
-		CSd5S5MO7nUOFZnEvBI70His1jc=
+		c8V3daMXjYCIUe1NtlpHzC2x4Ow=
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/GADAdChoicesPosition.h</key>
 		<data>
@@ -714,11 +718,15 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/GADRequestConfiguration.h</key>
 		<data>
-		rQPuFSef09FKOJmKtbZkJIao7PY=
+		OWAs93m54luncX6qVyc/gC5dKs0=
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/GADRequestError.h</key>
 		<data>
 		sT9HROeDriDuTk6OBMvU6tKlcHk=
+		</data>
+		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/GADRequest_Beta.h</key>
+		<data>
+		xSc+8LNsZUL/Y0Vlocp66ErWx4o=
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/GADResponseInfo.h</key>
 		<data>
@@ -782,7 +790,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/GoogleMobileAds_Beta.h</key>
 		<data>
-		z8q39wUo9R/xbFBON6huYj4+ryo=
+		rrJSfgzxbOMfjL2/h9Kp+RzQdMI=
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/Mediation/GADMAdNetworkAdapterProtocol.h</key>
 		<data>
@@ -902,7 +910,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Info.plist</key>
 		<data>
-		XnZr6nb5VF/LJZWddpWlizAyUdE=
+		ZIS+vt5COM3hTCVsvsoKGTw7UyM=
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Modules/module.modulemap</key>
 		<data>
@@ -910,7 +918,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Modules/module.private.modulemap</key>
 		<data>
-		OKs4tjJzgTRC9U1kG0HCuDqby2k=
+		/NwjiBGrYBhPu/LSxQC3Vu93pj8=
 		</data>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -923,11 +931,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			zK5Dn2nvAFZeEtdMPcb+hktCYe8=
+			O1Kd6RL1QzpSwiqgRAI3uUC5XbU=
 			</data>
 			<key>hash2</key>
 			<data>
-			vNalSkFXu+yT8DTG+YU1WvzU9UgSfc0aDvwjYvX1VbQ=
+			2lnYHt9x60eYJU0FT1s+V2E3eL36kvLao1/AnYqAmWA=
 			</data>
 		</dict>
 		<key>ios-arm64/GoogleMobileAds.framework/Headers/GADAdChoicesPosition.h</key>
@@ -1616,11 +1624,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rQPuFSef09FKOJmKtbZkJIao7PY=
+			OWAs93m54luncX6qVyc/gC5dKs0=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZrkU0aDlUZ0kGeTWhZKQmJkbjBcPbsrRq6wNbyHNzy0=
+			7s7BEUwOE8cW8qH59Si0eC1KNy4nTK7gipfvOTxp6sM=
 			</data>
 		</dict>
 		<key>ios-arm64/GoogleMobileAds.framework/Headers/GADRequestError.h</key>
@@ -1632,6 +1640,17 @@
 			<key>hash2</key>
 			<data>
 			NW9cvfdsI1ae2mplzAAYSAKwPWtGRN9mWbYkqEUslZ0=
+			</data>
+		</dict>
+		<key>ios-arm64/GoogleMobileAds.framework/Headers/GADRequest_Beta.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			xSc+8LNsZUL/Y0Vlocp66ErWx4o=
+			</data>
+			<key>hash2</key>
+			<data>
+			gNd/FnCv4YAO5vxyEiNHu6uRUQRos8nx1yJ/KmnARzA=
 			</data>
 		</dict>
 		<key>ios-arm64/GoogleMobileAds.framework/Headers/GADResponseInfo.h</key>
@@ -1803,11 +1822,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			z8q39wUo9R/xbFBON6huYj4+ryo=
+			rrJSfgzxbOMfjL2/h9Kp+RzQdMI=
 			</data>
 			<key>hash2</key>
 			<data>
-			LNlJXd+nyveh1vPlvVYj5XwBgzjNb6ium94e3JNp8VE=
+			ROgjpTYz+yq7xpXPV6/0LiWjr/EViLY5ALckUT67CHU=
 			</data>
 		</dict>
 		<key>ios-arm64/GoogleMobileAds.framework/Headers/Mediation/GADMAdNetworkAdapterProtocol.h</key>
@@ -2133,11 +2152,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+N/Kr2QHmx4J9Tcc8+alpaQp8as=
+			DkuJW8By3R1VknmFSMcPyRRimUU=
 			</data>
 			<key>hash2</key>
 			<data>
-			Bds7UzrGNxlT9yX9bly2IYzVfeBT0Wrtiw0Aotn1CpE=
+			UiVA/pwAPDhDXzCtynTrojfdKiAmXPRg1v8WjcozNRM=
 			</data>
 		</dict>
 		<key>ios-arm64/GoogleMobileAds.framework/Modules/module.modulemap</key>
@@ -2155,11 +2174,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			OKs4tjJzgTRC9U1kG0HCuDqby2k=
+			/NwjiBGrYBhPu/LSxQC3Vu93pj8=
 			</data>
 			<key>hash2</key>
 			<data>
-			b4IzI/9KAmOGmLPixW6vByUQSwRfy3Z581JBY3ad3gY=
+			7FF9Hdrxg6CoeaeHiAOGZVe6hLvBCRXkFJGNF0fqfO0=
 			</data>
 		</dict>
 		<key>ios-arm64/GoogleMobileAds.framework/PrivacyInfo.xcprivacy</key>
@@ -2177,11 +2196,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			CSd5S5MO7nUOFZnEvBI70His1jc=
+			c8V3daMXjYCIUe1NtlpHzC2x4Ow=
 			</data>
 			<key>hash2</key>
 			<data>
-			7J40U5rSVFgIYatKixJ9feFkZg7DWEeRnEFRo5mREYY=
+			szqGkOM4uolRFNVW6EtrAXWBiNNmFCymR25gRt3hcuA=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/GADAdChoicesPosition.h</key>
@@ -2870,11 +2889,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rQPuFSef09FKOJmKtbZkJIao7PY=
+			OWAs93m54luncX6qVyc/gC5dKs0=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZrkU0aDlUZ0kGeTWhZKQmJkbjBcPbsrRq6wNbyHNzy0=
+			7s7BEUwOE8cW8qH59Si0eC1KNy4nTK7gipfvOTxp6sM=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/GADRequestError.h</key>
@@ -2886,6 +2905,17 @@
 			<key>hash2</key>
 			<data>
 			NW9cvfdsI1ae2mplzAAYSAKwPWtGRN9mWbYkqEUslZ0=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/GADRequest_Beta.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			xSc+8LNsZUL/Y0Vlocp66ErWx4o=
+			</data>
+			<key>hash2</key>
+			<data>
+			gNd/FnCv4YAO5vxyEiNHu6uRUQRos8nx1yJ/KmnARzA=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/GADResponseInfo.h</key>
@@ -3057,11 +3087,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			z8q39wUo9R/xbFBON6huYj4+ryo=
+			rrJSfgzxbOMfjL2/h9Kp+RzQdMI=
 			</data>
 			<key>hash2</key>
 			<data>
-			LNlJXd+nyveh1vPlvVYj5XwBgzjNb6ium94e3JNp8VE=
+			ROgjpTYz+yq7xpXPV6/0LiWjr/EViLY5ALckUT67CHU=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Headers/Mediation/GADMAdNetworkAdapterProtocol.h</key>
@@ -3387,11 +3417,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			XnZr6nb5VF/LJZWddpWlizAyUdE=
+			ZIS+vt5COM3hTCVsvsoKGTw7UyM=
 			</data>
 			<key>hash2</key>
 			<data>
-			3IYmaWdvMGHPlsER0ZlQOzERFNvwcNETv1rvLtX2x0M=
+			WebaE8ZfhqK/I5CMAuvxTj/Uix/bFi2apA4GSMK3sgI=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/Modules/module.modulemap</key>
@@ -3409,11 +3439,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			OKs4tjJzgTRC9U1kG0HCuDqby2k=
+			/NwjiBGrYBhPu/LSxQC3Vu93pj8=
 			</data>
 			<key>hash2</key>
 			<data>
-			b4IzI/9KAmOGmLPixW6vByUQSwRfy3Z581JBY3ad3gY=
+			7FF9Hdrxg6CoeaeHiAOGZVe6hLvBCRXkFJGNF0fqfO0=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/GoogleMobileAds.framework/PrivacyInfo.xcprivacy</key>

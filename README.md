@@ -29,6 +29,15 @@ Jc.UMP.iOS now binds **Google User Messaging Platform SDK 3.0.0**, upgrading fro
 
 See Google's [UMP release notes](https://developers.google.com/admob/ios/privacy/download).
 
+## v13.4.0
+
+This package binds **Google Mobile Ads SDK 13.4.0**, upgrading from SDK 13.3.0. Building now requires **Xcode 26.2 or later**. .NET 9/10 support and the iOS 15 minimum are unchanged. Jc.UMP.iOS remains at 3.1.0.
+
+- Added beta `Request.ShouldSkipUninitializedAdapters`, which defaults to `false`. Set it to `true` to skip ad loading from mediation adapters that have not been initialized.
+- Improved native rendering thread safety by accessing media views on the main thread.
+
+See Google's [GMA release notes](https://developers.google.com/admob/ios/rel-notes).
+
 ## v13.3.0
 
 This package binds **Google Mobile Ads SDK 13.3.0**, upgrading from SDK 13.2.0. .NET 9/10 support and the iOS 15 minimum are unchanged. Jc.UMP.iOS remains at 3.1.0.
@@ -138,18 +147,18 @@ Jc.*.iOS requires a minimum SupportedOSPlatformVersion of 15.0. Update your proj
 
 # Smoke Tests
 
-The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app references exactly GMA 13.3.0 and UMP 3.1.0 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
+The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app references exactly GMA 13.4.0 and UMP 3.1.0 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
 
 There are two projects:
 
 - `tests/Tests.Google.MobileAds`: an iOS app that runs the binding tests using NUnitLite on UIKit's main thread.
 - `tests/Tests.Google.MobileAds.Host`: a desktop NUnit project that provides the `dotnet test` entry point. It builds the app, installs and launches it with Apple's `simctl`, collects the results, and checks that the run passed. The binding tests themselves run in the simulator.
 
-The twenty-one iOS cases check the native GMA and UMP SDK versions, consent sync ID marshalling, age treatment, beta preload and mediation configuration, empty preloader queries, all three new large adaptive banner sizing functions, all three deprecated sizing functions, neighboring-content URL array marshalling, and removal of the native-ad registration methods. The app uses Google's sample application ID and makes no live ad requests. An additional intentional failure probe is skipped during normal runs.
+The twenty-two iOS cases check the native GMA and UMP SDK versions, consent sync ID marshalling, skipping uninitialized adapters, age treatment, beta preload and mediation configuration, empty preloader queries, all three new large adaptive banner sizing functions, all three deprecated sizing functions, neighboring-content URL array marshalling, and removal of the native-ad registration methods. The app uses Google's sample application ID and makes no live ad requests. An additional intentional failure probe is skipped during normal runs.
 
 ## Run locally
 
-Requires macOS, .NET 10 with the iOS workloads needed by the .NET 9/10 binding targets, Xcode, and an available iPhone simulator running iOS 18 or later. The binding packages still support iOS 15+.
+Requires macOS, .NET 10 with the iOS workloads needed by the .NET 9/10 binding targets, Xcode 26.2 or later, and an available iPhone simulator running iOS 18 or later. The binding packages still support iOS 15+.
 
 Run from the repository root:
 
