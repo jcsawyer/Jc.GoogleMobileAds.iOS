@@ -172,6 +172,11 @@ namespace Google.MobileAds
         [Export("adWithPreloadID:")]
         AppOpenAd GetAd(string preloadId);
 
+        /// <summary>Returns the next ad's response info without removing it from the queue.</summary>
+        [return: NullAllowed]
+        [Export("adResponseInfoWithPreloadID:")]
+        ResponseInfo GetAdResponseInfo(string preloadId);
+
         [Export("numberOfAdsAvailableWithPreloadID:")]
         nuint GetNumberOfAdsAvailable(string preloadId);
 
@@ -205,6 +210,11 @@ namespace Google.MobileAds
         [return: NullAllowed]
         [Export("adWithPreloadID:")]
         InterstitialAd GetAd(string preloadId);
+
+        /// <summary>Returns the next ad's response info without removing it from the queue.</summary>
+        [return: NullAllowed]
+        [Export("adResponseInfoWithPreloadID:")]
+        ResponseInfo GetAdResponseInfo(string preloadId);
 
         [Export("numberOfAdsAvailableWithPreloadID:")]
         nuint GetNumberOfAdsAvailable(string preloadId);
@@ -240,6 +250,11 @@ namespace Google.MobileAds
         [Export("adWithPreloadID:")]
         RewardedAd GetAd(string preloadId);
 
+        /// <summary>Returns the next ad's response info without removing it from the queue.</summary>
+        [return: NullAllowed]
+        [Export("adResponseInfoWithPreloadID:")]
+        ResponseInfo GetAdResponseInfo(string preloadId);
+
         [Export("numberOfAdsAvailableWithPreloadID:")]
         nuint GetNumberOfAdsAvailable(string preloadId);
 
@@ -274,6 +289,11 @@ namespace Google.MobileAds
         [Export("adWithPreloadID:")]
         RewardedInterstitialAd GetAd(string preloadId);
 
+        /// <summary>Returns the next ad's response info without removing it from the queue.</summary>
+        [return: NullAllowed]
+        [Export("adResponseInfoWithPreloadID:")]
+        ResponseInfo GetAdResponseInfo(string preloadId);
+
         [Export("numberOfAdsAvailableWithPreloadID:")]
         nuint GetNumberOfAdsAvailable(string preloadId);
 
@@ -289,6 +309,91 @@ namespace Google.MobileAds
 
         [Export("configurations")]
         NSDictionary<NSString, PreloadConfigurationV2> Configurations { get; }
+    }
+
+    /// <summary>Private beta: requires access from your Google account manager.</summary>
+    [BaseType(typeof(NSObject), Name = "GADSwipeableInterstitialAdOptions")]
+    interface SwipeableInterstitialAdOptions : INSCopying
+    {
+        [Export("maxScreenHoldDuration", ArgumentSemantic.Assign)]
+        double MaxScreenHoldDuration { get; set; }
+
+        [Export("adSize", ArgumentSemantic.Assign)]
+        CGSize AdSize { get; set; }
+
+        [Export("customClickSwipeGestureDirection", ArgumentSemantic.Assign)]
+        UISwipeGestureRecognizerDirection CustomClickSwipeGestureDirection { get; }
+
+        [Export("customClickSwipeGestureTapsAllowed", ArgumentSemantic.Assign)]
+        bool CustomClickSwipeGestureTapsAllowed { [Bind("areCustomClickSwipeGestureTapsAllowed")] get; }
+
+        [Export("enableCustomClickSwipeGestureWithDirection:tapsAllowed:")]
+        void EnableCustomClickSwipeGesture(UISwipeGestureRecognizerDirection direction, bool tapsAllowed);
+    }
+
+    delegate void SwipeableInterstitialAdLoadCompletionHandler(
+        [NullAllowed] SwipeableInterstitialAd ad, [NullAllowed] NSError error);
+
+    /// <summary>Private beta: requires access from your Google account manager.</summary>
+    [DisableDefaultCtor]
+    [BaseType(typeof(NSObject), Name = "GADSwipeableInterstitialAd")]
+    interface SwipeableInterstitialAd
+    {
+        [Export("adView")]
+        UIView AdView { get; }
+
+        [Export("adUnitID")]
+        string AdUnitId { get; }
+
+        [Export("responseInfo")]
+        ResponseInfo ResponseInfo { get; }
+
+        [NullAllowed, Export("paidEventHandler", ArgumentSemantic.Copy)]
+        PaidEventHandler PaidEventHandler { get; set; }
+
+        [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
+        ISwipeableInterstitialAdDelegate Delegate { get; set; }
+
+        [NullAllowed, Export("videoControllerDelegate", ArgumentSemantic.Weak)]
+        IVideoControllerDelegate VideoControllerDelegate { get; set; }
+
+        [NullAllowed, Export("rootViewController", ArgumentSemantic.Weak)]
+        UIViewController RootViewController { get; set; }
+
+        /// <summary>The minimum screen hold time the app must enforce before allowing dismissal.</summary>
+        [Export("minScreenHoldDuration", ArgumentSemantic.Assign)]
+        double MinScreenHoldDuration { get; }
+
+        [Async, Static]
+        [Export("loadWithAdUnitID:request:options:completionHandler:")]
+        void Load(string adUnitId, [NullAllowed] Request request,
+            [NullAllowed] SwipeableInterstitialAdOptions options, SwipeableInterstitialAdLoadCompletionHandler completionHandler);
+    }
+
+    interface ISwipeableInterstitialAdDelegate { }
+
+    /// <summary>Private beta delegate for swipeable interstitial lifecycle events.</summary>
+    [Protocol, Model]
+    [BaseType(typeof(NSObject), Name = "GADSwipeableInterstitialAdDelegate")]
+    interface SwipeableInterstitialAdDelegate
+    {
+        [Export("swipeableInterstitialAdDidRecordImpression:")]
+        void DidRecordImpression(SwipeableInterstitialAd ad);
+
+        [Export("swipeableInterstitialAdDidRecordClick:")]
+        void DidRecordClick(SwipeableInterstitialAd ad);
+
+        [Export("swipeableInterstitialAdWillPresentScreen:")]
+        void WillPresentScreen(SwipeableInterstitialAd ad);
+
+        [Export("swipeableInterstitialAdWillDismissScreen:")]
+        void WillDismissScreen(SwipeableInterstitialAd ad);
+
+        [Export("swipeableInterstitialAdDidDismissScreen:")]
+        void DidDismissScreen(SwipeableInterstitialAd ad);
+
+        [Export("swipeableInterstitialAdDidStartScreenHoldTimer:")]
+        void DidStartScreenHoldTimer(SwipeableInterstitialAd ad);
     }
 
     // @interface GADMultipleAdsAdLoaderOptions : GADAdLoaderOptions

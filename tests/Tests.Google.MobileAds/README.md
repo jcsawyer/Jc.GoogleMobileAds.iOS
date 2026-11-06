@@ -10,11 +10,11 @@ dotnet test tests/Tests.Google.MobileAds.Host/Tests.Google.MobileAds.Host.csproj
 ```
 
 The C# host restores the iOS test app into an empty temporary NuGet cache, builds it, and uses Apple's `simctl` to
-install and launch it. GMA 13.4.0 and UMP 3.1.0 are exact-version package references mapped exclusively to the local
+install and launch it. GMA 13.5.0 and UMP 3.1.0 are exact-version package references mapped exclusively to the local
 feed. Clean the binding projects before packing after replacing native frameworks locally.
 
-Inside the app, NUnitLite runs twenty-two cases on UIKit's main thread: GMA and UMP SDK versions, consent sync ID
-marshalling, skipping uninitialized adapters, age treatment, beta preload and mediation configuration, empty preloader queries, three new and three deprecated banner sizing functions, neighboring-content URL marshalling, and removal
+Inside the app, NUnitLite runs twenty-three cases on UIKit's main thread: GMA and UMP SDK versions, consent sync ID
+marshalling, skipping uninitialized adapters, age treatment, beta preload and mediation configuration, empty preloader and response-info queries, swipeable interstitial options, three new and three deprecated banner sizing functions, neighboring-content URL marshalling, and removal
 of native-ad registration methods. It uses Google's
 sample application ID and makes no ad requests. The explicit `HarnessFailureProbe` is skipped normally; the app accepts
 NUnitLite command-line options such as `--test=Tests.Google.MobileAds.BindingTests.HarnessFailureProbe` for diagnostics.
