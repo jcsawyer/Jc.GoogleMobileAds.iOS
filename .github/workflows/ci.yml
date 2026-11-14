@@ -36,7 +36,7 @@ jobs:
         run: xcodebuild -version
       - name: Restore workloads
         run: dotnet workload install ios --version ${{ env.DOTNET_WORKLOAD_VERSION }}
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: binding-packages
           path: artifacts/smoke-packages
