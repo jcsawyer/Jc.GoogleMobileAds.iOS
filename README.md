@@ -12,6 +12,10 @@ Google Mobile Ads SDK iOS Bindings
 Each major version contains breaking changes according to the Google AdMob SDK. Please refer to the [Google AdMob SDK](https://developers.google.com/admob/ios/release-notes) for more information.
 The headline changes relevant will be listed here.
 
+## GMA v13.6.1 and UMP v3.1.1
+
+Both NuGet packages target .NET 10 and 11 for iOS. The .NET 9 target was removed after its support ended. The packages bind Google Mobile Ads SDK 13.6.0 and User Messaging Platform SDK 3.1.0 and support iOS 15 or later.
+
 ## UMP v3.1.0
 
 Jc.UMP.iOS now binds **Google User Messaging Platform SDK 3.1.0**, upgrading from SDK 3.0.0. .NET 9/10 support and the iOS 15 minimum are unchanged. Building requires Xcode 16 or later.
@@ -163,7 +167,7 @@ Jc.*.iOS requires a minimum SupportedOSPlatformVersion of 15.0. Update your proj
 
 # Smoke Tests
 
-The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app references exactly GMA 13.6.0 and UMP 3.1.0 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
+The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app targets .NET 10 and references exactly GMA 13.6.1 and UMP 3.1.1 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
 
 There are two projects:
 
@@ -174,14 +178,18 @@ The twenty-three iOS cases check the native GMA and UMP SDK versions, consent sy
 
 ## Run locally
 
-Requires macOS, .NET 10 with the iOS workloads needed by the .NET 9/10 binding targets, Xcode 26.2 or later, and an available iPhone simulator running iOS 18 or later. The binding packages still support iOS 15+.
-
-Run from the repository root:
+Build the packages from the repository root with a stable .NET 11 SDK and Xcode 27.2:
 
 ```sh
-dotnet workload restore src/jc-google-mobile-ads-ios.sln
-dotnet build src/jc-google-mobile-ads-ios.sln -c Release
-dotnet pack src/jc-google-mobile-ads-ios.sln -c Release --no-build -o artifacts/smoke-packages
+dotnet workload config --update-mode workload-set
+dotnet workload install ios
+dotnet build src/jc-google-mobile-ads-ios.sln -c Release -p:PackageOutputPath="$PWD/artifacts/smoke-packages"
+```
+
+For the simulator smoke tests, switch to .NET SDK 10.0.402 and Xcode 26.6. Use an available iPhone simulator running iOS 18 or later:
+
+```sh
+dotnet workload install ios --version 10.0.400
 dotnet test tests/Tests.Google.MobileAds.Host/Tests.Google.MobileAds.Host.csproj -c Release --logger trx --results-directory artifacts/dotnet-test
 ```
 

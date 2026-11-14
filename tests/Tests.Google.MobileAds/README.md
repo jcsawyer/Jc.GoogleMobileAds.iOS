@@ -1,16 +1,9 @@
 # iOS binding smoke tests
 
-Requires macOS, .NET 10 with the iOS workload, Xcode 26.2 or later, and an available iPhone simulator running iOS 18 or later. The
-binding package itself still supports iOS 15+.
-
-```sh
-dotnet build src/jc-google-mobile-ads-ios.sln -c Release
-dotnet pack src/jc-google-mobile-ads-ios.sln -c Release --no-build -o artifacts/smoke-packages
-dotnet test tests/Tests.Google.MobileAds.Host/Tests.Google.MobileAds.Host.csproj -c Release --logger trx --results-directory artifacts/dotnet-test
-```
+See [Smoke Tests](../../README.md#smoke-tests) for the toolchain and commands.
 
 The C# host restores the iOS test app into an empty temporary NuGet cache, builds it, and uses Apple's `simctl` to
-install and launch it. GMA 13.6.0 and UMP 3.1.0 are exact-version package references mapped exclusively to the local
+install and launch it. GMA 13.6.1 and UMP 3.1.1 are exact-version package references mapped exclusively to the local
 feed. Clean the binding projects before packing after replacing native frameworks locally.
 
 Inside the app, NUnitLite runs twenty-three cases on UIKit's main thread: GMA and UMP SDK versions, consent sync ID
