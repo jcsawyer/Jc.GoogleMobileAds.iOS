@@ -1,0 +1,34 @@
+name: Build NuGet packages
+
+on: workflow_call
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_VERSION: 11.0.x
+  DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+
+jobs:
+  build:
+    runs-on: xcode-27
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        env:
+          DOTNET_INSTALL_DIR: ${{ runner.temp }}/dotnet11
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-quality: ga
+      - name: Install iOS workload
+        run: |
+          dotnet workload config --update-mode workload-set
+          dotnet workload install ios
+      - name: Build and pack bindings
+        run: dotnet build src/jc-google-mobile-ads-ios.sln --configuration Release -p:PackageOutputPath="$PWD/artifacts/smoke-packages"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: binding-packages
+          path: artifacts/smoke-packages/*.nupkg
+          if-no-files-found: error

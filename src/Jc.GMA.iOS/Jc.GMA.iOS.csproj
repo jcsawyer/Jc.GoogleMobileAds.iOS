@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-ios;net10.0-ios</TargetFrameworks>
+		<TargetFrameworks>net10.0-ios;net11.0-ios</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
 		<IsBindingProject>true</IsBindingProject>
@@ -15,7 +15,7 @@
 		<RepositoryUrl>https://github.com/jcsawyer/Jc.GoogleMobileAds.iOS/tree/main</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<Version>13.6.0</Version>
+		<Version>13.6.1</Version>
 		<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
