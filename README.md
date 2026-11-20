@@ -12,6 +12,12 @@ Google Mobile Ads SDK iOS Bindings
 Each major version contains breaking changes according to the Google AdMob SDK. Please refer to the [Google AdMob SDK](https://developers.google.com/admob/ios/release-notes) for more information.
 The headline changes relevant will be listed here.
 
+## v13.7.0
+
+This package binds **Google Mobile Ads SDK 13.7.0**, upgrading from SDK 13.6.0. Google updated `CGSizeFromGADAdSize` to use portrait orientation when calculating fluid ad widths on a background thread, replacing the previously cached orientation. The public APIs are unchanged. .NET 10/11 support and the iOS 15 minimum are unchanged. Jc.UMP.iOS remains at 3.1.1.
+
+See Google's [GMA release notes](https://developers.google.com/admob/ios/rel-notes).
+
 ## GMA v13.6.1 and UMP v3.1.1
 
 Both NuGet packages target .NET 10 and 11 for iOS. The .NET 9 target was removed after its support ended. The packages bind Google Mobile Ads SDK 13.6.0 and User Messaging Platform SDK 3.1.0 and support iOS 15 or later.
@@ -167,7 +173,7 @@ Jc.*.iOS requires a minimum SupportedOSPlatformVersion of 15.0. Update your proj
 
 # Smoke Tests
 
-The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app targets .NET 10 and references exactly GMA 13.6.1 and UMP 3.1.1 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
+The smoke tests verify the locally built NuGet packages inside an **iOS simulator**. The iOS test app targets .NET 10 and references exactly GMA 13.7.0 and UMP 3.1.1 from the local package feed. An empty temporary NuGet cache ensures the run uses those packages.
 
 There are two projects:
 
