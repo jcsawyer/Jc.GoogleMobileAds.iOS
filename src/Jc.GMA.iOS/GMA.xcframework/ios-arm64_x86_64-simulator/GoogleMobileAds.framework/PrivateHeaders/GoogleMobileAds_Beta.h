@@ -13,7 +13,7 @@
 #import <GoogleMobileAds/GADRequest_Beta.h>
 #import <GoogleMobileAds/GADRewardedAdPreloader_Beta.h>
 #import <GoogleMobileAds/GADRewardedInterstitialAdPreloader_Beta.h>
-#import <GoogleMobileAds/GADSwipeableInterstitialAd_Beta.h>
 #import <GoogleMobileAds/GADSwipeableInterstitialAdDelegate_Beta.h>
 #import <GoogleMobileAds/GADSwipeableInterstitialAdOptions_Beta.h>
+#import <GoogleMobileAds/GADSwipeableInterstitialAd_Beta.h>
 #import <GoogleMobileAds/Mediation/GADMediationInitializationConfiguration_Beta.h>

@@ -7,8 +7,8 @@ framework module GoogleMobileAds_Private {
   header "GADRequest_Beta.h"
   header "GADRewardedAdPreloader_Beta.h"
   header "GADRewardedInterstitialAdPreloader_Beta.h"
-  header "GADSwipeableInterstitialAd_Beta.h"
   header "GADSwipeableInterstitialAdDelegate_Beta.h"
   header "GADSwipeableInterstitialAdOptions_Beta.h"
+  header "GADSwipeableInterstitialAd_Beta.h"
   header "Mediation/GADMediationInitializationConfiguration_Beta.h"
 }

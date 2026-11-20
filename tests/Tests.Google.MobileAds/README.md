@@ -3,7 +3,7 @@
 See [Smoke Tests](../../README.md#smoke-tests) for the toolchain and commands.
 
 The C# host restores the iOS test app into an empty temporary NuGet cache, builds it, and uses Apple's `simctl` to
-install and launch it. GMA 13.6.1 and UMP 3.1.1 are exact-version package references mapped exclusively to the local
+install and launch it. GMA 13.7.0 and UMP 3.1.1 are exact-version package references mapped exclusively to the local
 feed. Clean the binding projects before packing after replacing native frameworks locally.
 
 Inside the app, NUnitLite runs twenty-three cases on UIKit's main thread: GMA and UMP SDK versions, consent sync ID
